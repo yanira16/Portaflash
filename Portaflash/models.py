@@ -11,6 +11,9 @@ class Estado(models.Model):
 	id= models.AutoField('id',primary_key=True)
 	nombreEstado= models.CharField('Nombre Estado', max_length=256, null=False, blank=False)
 
+	def __unicode__(self):
+		return u'%s' % (self.nombreEstado)
+
 class OrdenDeCompra(models.Model):
 	numeroOC= models.IntegerField('Numero de Orden de Compra', primary_key=True)
 	nombreEmpresa= models.CharField('Nombre Empresa', max_length=128, null=False, blank=False)
@@ -24,7 +27,13 @@ class OrdenDeCompra(models.Model):
 
 class Despacho(models.Model):
 	id= models.AutoField('id',primary_key=True)
-	fechaDespacho= models.DateTimeField('Fecha Despacho', null=False, blank=False)
+	fechaDespacho= models.DateField('Fecha Despacho', null=False, blank=False)
+
+	#Llaves Foraneas
+	ordenDeCompra = models.ForeignKey(OrdenDeCompra,verbose_name="Orden de Compra")
+
+	def __unicode__(self):
+		return u'%s' % (self.nombreEstado)
 
 class Usuario(models.Model):
 	rutUsuario= models.IntegerField('Rut Usuario', primary_key=True)
