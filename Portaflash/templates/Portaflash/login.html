@@ -1,0 +1,30 @@
+{%extends "Portaflash/base.html"%}
+{%block importar%}
+	<link rel="stylesheet" type="text/css" href="/static/css/base.css">
+{%endblock%}
+{%block titulo%}
+	Portaflash
+{%endblock%}
+{%block head%}
+	<h1>SOCIEDAD EN GESTIÓN COMERCIAL LTDA.</h1>
+{%endblock%}
+{%block menu%}
+	<button id="btn1" class="btn btn-default btn-lg btnMenu" onclick="fn1('btn1');">boton1</button>
+	<button id="btn2" onclick="fn1('btn2');">boton2</button>
+{%endblock%}
+{%block contenido%}
+	<h2 class="mih2">Quienes Somos</h2>
+	<div class="parrafo1">
+		<p> Sociedad en Gestión Comercial Limitada es una empresa chilena que presta servicios al área de portaconductores de baja y alta tensión, produciendo postes, escalerillas y bandejas entre los productos más demandados</p>
+	</div>
+{%endblock%}
+{%block JS%}
+	<script type="text/javascript">
+		document.getElementById('btn2').className = "btn btn-default btn-lg btnMenu active";
+		function fn1(id){
+			document.getElementById('btn1').className = "btn btn-default btn-lg btnMenu";
+			document.getElementById('btn2').className = "btn btn-default btn-lg btnMenu";
+			document.getElementById(id).className = "btn btn-default btn-lg btnMenu active";
+		}
+	</script>
+{%endblock%}

@@ -1,0 +1,51 @@
+body {
+	background-color: gray;
+	margin:0;
+	padding:0;
+	height: 100%;
+}
+
+#wrap{
+	position:relative;
+	min-height: 100%;
+}
+
+h1 {
+	background-color:red;
+	text-align: center;
+	width: 1400px;
+	padding: 50px;
+	margin:0; 
+	font-family: Arial;
+	font-size: 300%;
+}
+
+.btnMenu{
+	width: 100%;
+}
+#menu{
+	padding-right: 0;
+	background-color: white;
+	height: 500px;
+	text-align: center;
+}
+
+#body{
+	height: 100%;
+	position:relative;
+}
+
+.parrafo1{
+	text-align: center;	
+	font-family: Arial;
+	font-size: 27px;
+	padding-top: 50px;
+}
+
+.mih2{
+	text-align: center;	
+	font-family: Arial;
+	font-size: 40px;
+	padding-top: 50px;
+	font-style: italic;
+}

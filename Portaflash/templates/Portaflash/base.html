@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device width, initial -scale=1">
+	<link href="/static/css/bootstrap.min.css" rel="stylesheet">
+	{%block importar%}{%endblock%}
+	<title>{%block titulo%}{%endblock%}</title>
+	<!---->
+</head>
+<body>
+<div id="wrap">
+	<div id='head' class="row">
+		{%block head%}{%endblock%}
+	</div>
+	<div id="body" class="row">
+		<div id="menu" class="col-xs-4">
+			{%block menu%}{%endblock%}
+		</div>
+		<div id="contenido" class="col-xs-8">
+			{%block contenido%}{%endblock%}
+		</div>
+	</div>
+	<div id="foot" class="row">
+		{%block foot%}{%endblock%}
+	</div>
+</div>
+</body>
+<footer>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="/static/js/bootstrap.min.js"></script>
+	{%block JS%}
+	{%endblock%}
+</footer>
+</html>
