@@ -1,0 +1,27 @@
+<!-- Vista que lista todas las ordenes de compra -->
+
+{%extends "Portaflash/base.html"%}
+{%block importar%}
+	<link rel="stylesheet" type="text/css" href="/static/css/base.css">
+{%endblock%}
+{%block titulo%}
+	Portaflash - OC
+{%endblock%}
+{%block head%}
+	<img src="C:\Users\Yanira\Desktop\Portaflash\Portaflash\Portaflash\static\img\logoempresa.png" class="logoempresa" alt=" " style="width:100px;height:100px">
+	<h1><u><b>SOCIEDAD EN GESTIÓN COMERCIAL LIMITADA</b></u></h1>
+	
+{%endblock%}
+{%block menu%}
+	<a href="url">Home</a>
+	<a href="url1">Inicio de Sesion</a>
+	<img src="C:\Users\Yanira\Desktop\Portaflash\Portaflash\Portaflash\static\img\logoproyecto.png" class="" alt=" " style="width:100px;height:100px">
+{%endblock%}
+{%block contenido%}
+	{% for orden in oc %}
+		{{orden}}
+		{% endfor %}
+{%endblock%}
+{%block JS%}
+	
+{%endblock%}
