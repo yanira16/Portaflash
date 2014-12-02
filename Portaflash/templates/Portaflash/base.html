@@ -32,5 +32,12 @@
 	<script src="/static/js/bootstrap.min.js"></script>
 	{%block JS%}
 	{%endblock%}
+	<script type="text/javascript">
+		{% if messages %}
+			{% for message in messages %}
+				alert('{{message}}');
+			{% endfor %}
+		{% endif %}
+	</script>
 </footer>
 </html>

@@ -25,17 +25,18 @@
 	<h2 class="mih2">Inicio de Sesión</h2>
 	
 	<!--<button id="btn2" onclick="fn1('btn2');">boton2</button>-->
-	<form class="form-horizontal" role="form">
+	<form class="form-horizontal" role="form" method="POST">
+  {% csrf_token %}
   <div class="form-group">
     <label for="usuario" class="col-sm-2 control-label">Usuario</label>
     <div class="col-sm-10">
-      <input type="usario" class="form-control" id="inputusuario" placeholder="Usuario">
+      <input type="usario" class="form-control" id="inputusuario" placeholder="Usuario" name='username'>
     </div>
   </div>
   <div class="form-group">
     <label for="inputcontraseña3" class="col-sm-2 control-label">Contraseña</label>
     <div class="col-sm-10">
-      <input type="contraseña" class="form-control" id="inputcontrasena" placeholder="Contraseña">
+      <input type="password" class="form-control" id="inputcontrasena" placeholder="Contraseña" name='password'>
     </div>
   </div>
   <div class="form-group">

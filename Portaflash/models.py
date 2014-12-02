@@ -6,6 +6,13 @@ from django.contrib.auth.models import User
 #from django.contrib.auth.admin import UserAdmin
 #from django.contrib.auth import authenticate, login
 
+Rol=(
+	('Administrador', 'Administrador'),
+	('Vendedor','Vendedor'),
+	('Jefe de Taller', 'Jefe de Taller'),
+	('Bodeguero', 'Bodeguero'),
+	)
+
 
 class Estado(models.Model):
 	id= models.AutoField('id',primary_key=True)
@@ -41,9 +48,12 @@ class Despacho(models.Model):
 class Usuario(models.Model):
 	rutUsuario= models.IntegerField('Rut Usuario', primary_key=True)
 	nombreUsuario= models.CharField('Nombre Usuario', max_length=128, null=False, blank=False)
-	apeliidoUsuario= models.CharField('Apellido Usuario', max_length=128, null=False, blank=False)
-	rol= models.CharField('Rol Usuario', max_length=20, null=False, blank=False)
+	apellidoUsuario= models.CharField('Apellido Usuario', max_length=128, null=False, blank=False)
+	rol= models.CharField('Rol Usuario', max_length=20, null=False, blank=False, choices=Rol)
 
 	#Llaves Foraneas
 	user= models.OneToOneField(User) #Relacion uno a uno con la tabla usuario del sistema
+
+	def __unicode__(self):
+		return u'%s %s [%s]' % (self.nombreUsuario,self.apellidoUsuario, self.rol)
 

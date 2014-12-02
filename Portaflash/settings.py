@@ -51,6 +51,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     #'django.middleware.security.SecurityMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
 )
 
 ROOT_URLCONF = 'Portaflash.urls'
@@ -64,7 +65,7 @@ WSGI_APPLICATION = 'Portaflash.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'PortalflashDB',
+        'NAME': 'PortaflashDB',
 	'USER': 'DB_USER',
 	'PASSWORD': 'DB_PASSWORD',
 	'HOST': 'localhost',
