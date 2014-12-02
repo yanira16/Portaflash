@@ -6,25 +6,76 @@
 	Portaflash
 {%endblock%}
 {%block head%}
-	<h1>SOCIEDAD EN GESTIÓN COMERCIAL LTDA.</h1>
-{%endblock%}
-{%block menu%}
-	<button id="btn1" class="btn btn-default btn-lg btnMenu" onclick="fn1('btn1');">boton1</button>
-	<button id="btn2" onclick="fn1('btn2');">boton2</button>
-{%endblock%}
-{%block contenido%}
-	<h2 class="mih2">Quienes Somos</h2>
-	<div class="parrafo1">
-		<p> Sociedad en Gestión Comercial Limitada es una empresa chilena que presta servicios al área de portaconductores de baja y alta tensión, produciendo postes, escalerillas y bandejas entre los productos más demandados</p>
+	<div class="row">
+		<div id"logoempresa" class="col-xs-1">
+			<img src="/static/img/logoempresa.png" class="logoempresa" alt=" " style="width:150px;height:150px; margin-left:15px">
+		</div>
+		<div class="col-xs-11">
+			<h1><u><b>SOCIEDAD EN GESTIÓN COMERCIAL LIMITADA</b></u></h1>
+		</div>
 	</div>
 {%endblock%}
+{%block menu%}
+	<a href="/">Home</a>
+	<a href="/iniciosesion" style="width:50px;height:50px; margin-top:100px; margin-left: 50px">Inicio de Sesion</a>
+	<img src="/static/img/logoproyecto.png" class="" alt=" " style="width:300px;height:300px; margin-top:200px; margin-left: 60px">
+{%endblock%}
+{%block contenido%}
+
+	<h2 class="mih2">Inicio de Sesión</h2>
+	
+	<!--<button id="btn2" onclick="fn1('btn2');">boton2</button>-->
+	<form class="form-horizontal" role="form">
+  <div class="form-group">
+    <label for="usuario" class="col-sm-2 control-label">Usuario</label>
+    <div class="col-sm-10">
+      <input type="usario" class="form-control" id="inputusuario" placeholder="Usuario">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputcontraseña3" class="col-sm-2 control-label">Contraseña</label>
+    <div class="col-sm-10">
+      <input type="contraseña" class="form-control" id="inputcontrasena" placeholder="Contraseña">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"> Recordarme
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="roles">
+  <div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true" style="margin-left:150px">
+    Rol
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Administrador</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Vendedor</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Jefe de Taller</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Bodeguero</a></li>
+  </ul>
+</div>
+</div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button id="btn1" class="btn btn-danger btn-lg btnMenu" onclick="fn1('btn1');">Ingresar</button>
+  </div>
+</form>
+
+{%endblock%}
+
 {%block JS%}
 	<script type="text/javascript">
-		document.getElementById('btn2').className = "btn btn-default btn-lg btnMenu active";
+		document.getElementById('btn2').className = "btn btn-danger btn-lg btnMenu active";
 		function fn1(id){
-			document.getElementById('btn1').className = "btn btn-default btn-lg btnMenu";
+			document.getElementById('btn1').className = "btn btn-danger btn-lg btnMenu";
 			document.getElementById('btn2').className = "btn btn-default btn-lg btnMenu";
-			document.getElementById(id).className = "btn btn-default btn-lg btnMenu active";
+			document.getElementById(id).className = "btn btn-danger btn-lg btnMenu active";
 		}
 	</script>
 {%endblock%}

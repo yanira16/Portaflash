@@ -10,4 +10,6 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', Home("a").mostrarHome),
     url(r'^ordenesdecompra/listado/', oc_view, name= 'listado_oc'),
+    url(r'^iniciosesion$', Login("a").mostrarLogin),
+
 ]

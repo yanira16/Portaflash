@@ -13,20 +13,33 @@ body {
 h1 {
 	background-color:red;
 	text-align: center;
-	width: 1400px;
+	width: 1300px;
+	height: 150px;
 	padding: 50px;
 	margin:0; 
+	margin-left: 45px;
 	font-family: Arial;
 	font-size: 300%;
 }
 
-.btnMenu{
-	width: 100%;
+#inputusuario, #inputcontrasena{
+	max-width: 50%;
+	min-width: 100px;
 }
+
+#roles{
+	margin-left: 100px;
+}
+
+.btnMenu{
+	width: 100px;
+	margin-left: 300px;
+}
+
 #menu{
 	padding-right: 0;
 	background-color: white;
-	height: 500px;
+	height: 650px;
 	text-align: center;
 }
 

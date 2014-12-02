@@ -17,3 +17,9 @@ def oc_view(request):
 	ordenes= OrdenDeCompra.objects.all()
 	ctx ={'oc':ordenes}
 	return render_to_response('Portaflash/oc.html',ctx,context_instance=RequestContext(request))
+
+class Login(TemplateView):
+	def __init__(self,valor):
+		self.valor = valor
+	def mostrarLogin(self,request):
+		return render(request, 'Portaflash/login.html',{})
