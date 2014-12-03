@@ -15,6 +15,59 @@ class Home(TemplateView):
 		context= {'pelicula':''}
 		return render(request, 'Portaflash/home.html',context)
 
+class HomeAdmi(TemplateView):
+	def __init__(self,valor):
+		self.valor = valor
+	def mostrarHomeAdmi(self,request):
+		return render(request, 'Portaflash/homeAdmi.html',{})
+
+class ModificarPerfil(TemplateView):
+	def __init__(self,valor):
+		self.valor = valor
+	def mostrarModificarPerfil(self,request):
+		return render(request, 'Portaflash/modificarPerfil.html',{})
+
+class ModificarContrasena(TemplateView):
+	def __init__(self,valor):
+		self.valor = valor
+	def mostrarModificarContrasena(self,request):
+		return render(request, 'Portaflash/modificarContrasena.html',{})
+
+class AdmiTrab(TemplateView):
+	def __init__(self,valor):
+		self.valor = valor
+	def mostrarAdmiTrab(self,request):
+		return render(request, 'Portaflash/admitrab.html',{})
+
+class AdmiTrabIngreTrab(TemplateView):
+	def __init__(self,valor):
+		self.valor = valor
+	def mostrarAdmiTrabIngreTrab(self,request):
+		return render(request, 'Portaflash/admitrabingretrab.html',{})
+
+class AdmiTrabModTrab(TemplateView):
+	def __init__(self,valor):
+		self.valor = valor
+	def mostrarAdmiTrabModTrab(self,request):
+		return render(request, 'Portaflash/admitrabmodtrab.html',{})
+
+class AdmiMaqui(TemplateView):
+	def __init__(self,valor):
+		self.valor = valor
+	def mostrarAdmiMaqui(self,request):
+		return render(request, 'Portaflash/admimaqui.html',{})
+
+class AdmiMaquiVerEstado(TemplateView):
+	def __init__(self,valor):
+		self.valor = valor
+	def mostrarAdmiMaquiVerEstado(self,request):
+		return render(request, 'Portaflash/admimaquiverestado.html',{})
+
+class AdmiMaquiModiEstado(TemplateView):
+	def __init__(self,valor):
+		self.valor = valor
+	def mostrarAdmiMaquiModiEstado(self,request):
+		return render(request, 'Portaflash/admimaquimodiestado.html',{})
 
 #Lista todas las ordenes de compra de sistema
 def oc_view(request):

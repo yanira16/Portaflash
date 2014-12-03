@@ -39,6 +39,19 @@
       <input type="password" class="form-control" id="inputcontrasena" placeholder="Contraseña" name='password'>
     </div>
   </div>
+
+
+
+    <div class="roles">
+  <select class="form-control">
+    <option value="Sin">Elija un Rol</option>
+    <option value="Administrador">Administrador</option>
+    <option value="Vendedor">Vendedor</option>
+    <option value="Jefe">Jefe de Taller</option>
+    <option value="Bodeguero">Bodeguero</option>
+    </select>
+</div>
+
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
       <div class="checkbox">
@@ -48,26 +61,14 @@
       </div>
     </div>
   </div>
-  <div class="roles">
-  <div class="dropdown">
-  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true" style="margin-left:150px">
-    Rol
-    <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Administrador</a></li>
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Vendedor</a></li>
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Jefe de Taller</a></li>
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Bodeguero</a></li>
-  </ul>
-</div>
-</div>
+
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
       <button id="btn1" class="btn btn-danger btn-lg btnMenu" onclick="fn1('btn1');">Ingresar</button>
+
   </div>
 </form>
-
+  <a href="/HomeAdmi">Home</a>
 {%endblock%}
 
 {%block JS%}
