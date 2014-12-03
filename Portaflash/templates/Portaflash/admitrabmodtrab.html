@@ -1,0 +1,70 @@
+{%extends "Portaflash/base.html"%}
+{%block importar%}
+  <link rel="stylesheet" type="text/css" href="/static/css/base.css">
+{%endblock%}
+{%block titulo%}
+  Portaflash
+{%endblock%}
+{%block head%}
+  <div class="row">
+    <div id"logoempresa" class="col-xs-1">
+      <img src="/static/img/logoempresa.png" class="logoempresa" alt=" " style="width:150px;height:150px; margin-left:15px">
+    </div>
+    <div class="col-xs-11">
+      <h1><u><b>SOCIEDAD EN GESTIÓN COMERCIAL LIMITADA</b></u></h1>
+    </div>
+  </div>
+{%endblock%}
+{%block menu%}
+   <ul class="nav nav-pills nav-stacked">
+  <li role="presentation"><a href="#">Home Menú Administrador</a></li>
+  <li role="presentation"><a href="/admitrab">Administrar Trabajador</a></li>
+  <li role="presentation"><a href="/admimaqui">Administrar Maquinaria</a></li>
+  <li role="presentation"><a href="#">Administrar Orden de Compra</a></li>
+  <li role="presentation"><a href="/ModificarPerfil">Modificar Perfil</a></li>
+  <li role="presentation"><a href="/">Cerrar Sesión</a></li>
+</ul>
+
+
+{%endblock%}
+{%block contenido%}
+  <ul class="nav nav-pills" id="tab1">
+      <li role="presentation"> <a  href="/admitrabingretrab">Ingresar Trabajador</a></li>
+      <li role="presentation"><a href="/admitrabmodtrab">Modificar Trabajador</a></li>
+  </ul>
+
+  <h2 class="mih2">Modificar Trabajador</h2>
+  
+  <!--<button id="btn2" onclick="fn1('btn2');">boton2</button>-->
+  <form class="form-horizontal" role="form" method="POST">
+  {% csrf_token %}
+
+  <div class="form-group">
+    <label for="nombre" class="col-sm-4 control-label">Nombre Trabajador</label>
+    <div class="col-sm-8">
+      <input type="nombre" class="form-control" id="inputnombre1" placeholder="Nombre" name='nombre'>
+    </div>
+  </div>
+
+<div class="roles2">
+  <label for="nombre" class="col-sm-4 control-label" id="EstadoTrabajador" style="width:100%">Estado Trabajador</label>
+
+  <select class="form-control">
+    <option value="asigne">Elija un Estado</option>
+    <option value="Administrador">Activo</option>
+    <option value="Vendedor">Con permiso</option>
+    <option value="Jefe">De vacaciones</option>
+    <option value="Bodeguero">Despedido</option>
+    </select>
+  <div class="col-sm-8">
+    </div>
+</div>
+    <div class="col-sm-offset-3 col-sm-9">
+      <button id="btn4" class="btn btn-danger btn-lg btnMenu" onclick="fn4('btn4');">Modificar</button>
+  </div>
+  </div>
+</form>
+{%endblock%}
+{%block JS%}
+  
+{%endblock%}

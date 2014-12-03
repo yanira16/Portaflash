@@ -1,0 +1,40 @@
+{%extends "Portaflash/base.html"%}
+{%block importar%}
+  <link rel="stylesheet" type="text/css" href="/static/css/base.css">
+{%endblock%}
+{%block titulo%}
+  Portaflash
+{%endblock%}
+{%block head%}
+  <div class="row">
+    <div id"logoempresa" class="col-xs-1">
+      <img src="/static/img/logoempresa.png" class="logoempresa" alt=" " style="width:150px;height:150px; margin-left:15px">
+    </div>
+    <div class="col-xs-11">
+      <h1><u><b>SOCIEDAD EN GESTIÓN COMERCIAL LIMITADA</b></u></h1>
+    </div>
+  </div>
+{%endblock%}
+{%block menu%}
+   <ul class="nav nav-pills nav-stacked">
+  <li role="presentation"><a href="/HomeAdmi">Home Menú Administrador</a></li>
+  <li role="presentation"><a href="/admitrab">Administrar Trabajador</a></li>
+  <li role="presentation"><a href="admimaqui">Administrar Maquinaria</a></li>
+  <li role="presentation"><a href="#">Administrar Orden de Compra</a></li>
+  <li role="presentation"><a href="/ModificarPerfil">Modificar Perfil</a></li>
+  <li role="presentation"><a href="/">Cerrar Sesión</a></li>
+</ul>
+
+
+{%endblock%}
+{%block contenido%}
+  <h2 class="mih2"><b><u>Menú Administrador</u></b></h2>
+  <h2 class="mih2"><b>Bienvenido</b></h2>
+  <div class="parrafo1">
+    <p><em> En este menú podrá acceder y modificar la información tanto de los trabajadores como de la maquinaria y de los ordenes de compra existentes en el sistema. Además de poder agregar dichos tópicos.</em></p>
+    <img src="/static/img/logoproyecto.png" class="" alt=" " style="width:200px;height:200px; margin-top:50px; margin-left: 60px">
+  </div>
+{%endblock%}
+{%block JS%}
+  
+{%endblock%}
