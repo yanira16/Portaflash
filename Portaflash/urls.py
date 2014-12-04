@@ -15,12 +15,15 @@ urlpatterns = [
     url(r'^ModificarPerfil$', ModificarPerfil("a").mostrarModificarPerfil),
 	url(r'^modificarContrasena$', ModificarContrasena("a").mostrarModificarContrasena),
 	url(r'^admitrab$', AdmiTrab("a").mostrarAdmiTrab),
-	url(r'^admitrabingretrab$', AdmiTrabIngreTrab("a").mostrarAdmiTrabIngreTrab),
+	url(r'^admitrabingretrab$', AdmiTrabIngreTrab("a").mostrarAdmiTrabIngreTrab, name='vista_ingresar_trabajador'),
 	url(r'^admitrabmodtrab$', AdmiTrabModTrab("a").mostrarAdmiTrabModTrab),
 	url(r'^admitrabmodtrab$', AdmiTrabModTrab("a").mostrarAdmiTrabModTrab),
 	url(r'^admimaqui$', AdmiMaqui("a").mostrarAdmiMaqui),
 	url(r'^admimaquiverestado$', AdmiMaquiVerEstado("a").mostrarAdmiMaquiVerEstado),
-	url(r'^admimaquimodiestado$', AdmiMaquiModiEstado("a").mostrarAdmiMaquiModiEstado),
+	url(r'^admimaquimodiestado$', AdmiMaquiModiEstado("a").mostrarAdmiMaquiModiEstado, name='vista_modificar_estado_maquinaria'), ###BASE PARA IMODIFICAR
+	url(r'^admimaquiingremaqui$', AdmiMaquiIngreMaqui("a").mostrarAdmiMaquiIngreMaqui, name='vista_ingresar_maquinaria'), ###BASE PARA INGRESAR
+
+	url(r'^logout/', logout_view, name= 'vista_logout'),
 
 	
 ]

@@ -6,6 +6,7 @@ from django.template import RequestContext
 from django.contrib.auth import login, authenticate, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib import messages
+from Portaflash.forms import *
 
 # Create your views here.
 class Home(TemplateView):
@@ -75,6 +76,41 @@ def oc_view(request):
 	ctx ={'oc':ordenes}
 	return render_to_response('Portaflash/oc.html',ctx,context_instance=RequestContext(request))
 
+####BASE PARA INGRESAR
+class AdmiMaquiIngreMaqui(TemplateView):
+	def __init__(self,valor):
+		self.valor = valor
+	def mostrarAdmiMaquiIngreMaqui(self,request):
+		form= MaquinariaForm(request.POST or None)
+		if request.method=='POST':
+			if form.is_valid():
+				form.save()
+				messages.success(request,'Se ha ingresado correctamente la maquinaria.')
+			else:
+				messages.error(request,'Debe llenar todos los campos disponibles.')
+		ctx= {'MaquinariaForm':form}
+		return render(request, 'Portaflash/admimaquiingremaqui.html',ctx)
+
+
+
+####Ingresar Operador
+class AdmiTrabIngreTrab(TemplateView):
+	def __init__(self,valor):
+		self.valor = valor
+	def mostrarAdmiTrabIngreTrab(self,request):
+		form= OperadorForm(request.POST or None)
+		if request.method=='POST':
+			if form.is_valid():
+				form.save()
+				messages.success(request,'Se ha ingresado correctamente el trabajador.')
+			else:
+				messages.error(request,'Debe llenar todos los campos disponibles.')
+		ctx= {'OperadorForm':form}
+		return render(request, 'Portaflash/admitrabingretrab.html',ctx)
+
+
+
+
 class Login(TemplateView):
 	def __init__(self,valor):
 		self.valor = valor
@@ -88,13 +124,23 @@ class Login(TemplateView):
 			password = request.POST['password']
 			user = authenticate(username=username, password=password)
 			if user is not None:
-				if user.is_active:
+				if user.is_active:					
 					usuario= Usuario.objects.filter(user=user)
+					#roles = Rol.objects.filter(usuario=usuario).filter(rol=request.POST['rol'])
 					if len(usuario)==1:
+					#if len(usuario)==1 && len(roles)==1:
+						request.session['ROL_USUARIO']= request.POST['rol']
 						login(request, user)
 						messages.success(request,'Bienvenido ' + usuario[0].nombreUsuario)
 						return HttpResponseRedirect('/')
 			messages.error(request,'Usuario o Contrasena incorrectos')
 			return render(request, 'Portaflash/login.html',{})
+
+def logout_view(request):
+    """
+    Cierra la sesion de un usuario y lo redirecciona al home
+    """
+    logout(request)
+    return HttpResponseRedirect('/')
 
 				

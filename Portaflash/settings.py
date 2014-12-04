@@ -66,12 +66,22 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'PortaflashDB',
-	'USER': 'DB_USER',
-	'PASSWORD': 'DB_PASSWORD',
-	'HOST': 'localhost',
-	'PORT': '3306',
+        'USER': 'DB_USER',
+        'PASSWORD': 'DB_PASSWORD',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "django.contrib.messages.context_processors.messages",
+    'Portaflash.context.datos_globales'
+)
 
 # Internationalization
 # https://docs.djangoproject.com/en/dev/topics/i18n/

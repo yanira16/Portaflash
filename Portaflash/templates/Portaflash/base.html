@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device width, initial -scale=1">
+	<link href="/static/css/jquery.ambiance.css" rel="stylesheet" type="text/css" media="screen"/>
 	<link href="/static/css/bootstrap.min.css" rel="stylesheet">
 	{%block importar%}{%endblock%}
 	<title>{%block titulo%}{%endblock%}</title>
@@ -16,7 +17,22 @@
 	</div>
 	<div id="body" class="row">
 		<div id="menu" class="col-xs-4">
-			{%block menu%}{%endblock%}
+			{% if not ROL_USUARIO %}
+				{% include "Portaflash/menus/menu_base.html" %}
+			{% else %}
+				{% ifequal ROL_USUARIO 'Administrador' %}
+					{% include "Portaflash/menus/menu_admin.html" %}
+				{% endifequal %}
+				{% ifequal ROL_USUARIO 'Bodeguero' %}
+					{% include "Portaflash/menus/menu_bodeguero.html" %}
+				{% endifequal %}
+				{% ifequal ROL_USUARIO 'Jefe de Taller' %}
+					{% include "Portaflash/menus/menu_jefeTaller.html" %}
+				{% endifequal %}
+				{% ifequal ROL_USUARIO 'Vendedor' %}
+					{% include "Portaflash/menus/menu_vendedor.html" %}
+				{% endifequal %}
+			{% endif %}
 		</div>
 		<div id="contenido" class="col-xs-8">
 			{%block contenido%}{%endblock%}
@@ -30,14 +46,26 @@
 <footer>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="/static/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/static/js/jquery.ambiance.js"></script>
 	{%block JS%}
 	{%endblock%}
 	<script type="text/javascript">
-		{% if messages %}
-			{% for message in messages %}
-				alert('{{message}}');
-			{% endfor %}
-		{% endif %}
+        {% if messages %}
+            $(document).ready(function(){
+                {% for message in messages %}
+                    $.ambiance({message: "{{message}}", 
+                        {% ifequal message.tags "info" %}title:"Informacion",{% endifequal %}
+                        {% ifequal message.tags "warning" %}title:"Advertencia",{% endifequal %}
+                        {% ifequal message.tags "error" %}title:"Error",{% endifequal %}
+                        {% ifequal message.tags "success" %}title:"Aviso",{% endifequal %}
+                        
+                        type: "{{message.tags}}",
+                        timeout:6,
+                        width:400,
+                    });
+                {% endfor %}
+            });
+        {% endif %}
 	</script>
 </footer>
 </html>
