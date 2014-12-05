@@ -25,6 +25,8 @@ urlpatterns = [
 	url(r'^admimaquimodiestado_getForm$', AdmiMaquiModiEstado_getForm, name="vista_modificar_maqui_get_form"),
 	url(r'^HomeBode$', HomeBode("a").mostrarHomeBode),
 	url(r'^bodenuevomate$', BodeNuevoMate("a").mostrarBodeNuevoMate, name='vista_nuevo_material'), ###Ingresar Material nuevo
+	url(r'^HomeVende$', HomeVende("a").mostrarHomeVende),
+	url(r'^HomeJefe$', HomeJefe("a").mostrarHomeJefe),
 
 	url(r'^logout/', logout_view, name= 'vista_logout'),
 

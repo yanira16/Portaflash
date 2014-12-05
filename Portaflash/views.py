@@ -29,6 +29,18 @@ class HomeBode(TemplateView):
 	def mostrarHomeBode(self,request):
 		return render(request, 'Portaflash/homeBode.html',{})
 
+class HomeVende(TemplateView):
+	def __init__(self,valor):
+		self.valor = valor
+	def mostrarHomeVende(self,request):
+		return render(request, 'Portaflash/homeVende.html',{})
+
+class HomeJefe(TemplateView):
+	def __init__(self,valor):
+		self.valor = valor
+	def mostrarHomeJefe(self,request):
+		return render(request, 'Portaflash/homeJefe.html',{})
+
 class ModificarPerfil(TemplateView):
 	def __init__(self,valor):
 		self.valor = valor
