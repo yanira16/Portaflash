@@ -7,6 +7,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib import messages
 from Portaflash.forms import *
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 class Home(TemplateView):
@@ -21,6 +22,12 @@ class HomeAdmi(TemplateView):
 		self.valor = valor
 	def mostrarHomeAdmi(self,request):
 		return render(request, 'Portaflash/homeAdmi.html',{})
+
+class HomeBode(TemplateView):
+	def __init__(self,valor):
+		self.valor = valor
+	def mostrarHomeBode(self,request):
+		return render(request, 'Portaflash/homeBode.html',{})
 
 class ModificarPerfil(TemplateView):
 	def __init__(self,valor):
@@ -77,7 +84,7 @@ def oc_view(request):
 	return render_to_response('Portaflash/oc.html',ctx,context_instance=RequestContext(request))
 
 ####BASE PARA INGRESAR
-class AdmiMaquiIngreMaqui(TemplateView):
+'''class AdmiMaquiIngreMaqui(TemplateView):
 	def __init__(self,valor):
 		self.valor = valor
 	def mostrarAdmiMaquiIngreMaqui(self,request):
@@ -88,10 +95,29 @@ class AdmiMaquiIngreMaqui(TemplateView):
 				messages.success(request,'Se ha ingresado correctamente la maquinaria.')
 				return HttpResponseRedirect("/admimaqui")
 			else:
+				messages.error(request,'Debe llenar correctamente todos los campos disponibles.')
+		ctx= {'MaquinariaForm':form}
+		return render(request, 'Portaflash/admimaquiingremaqui.html',ctx)'''
+
+
+class AdmiMaquiIngreMaqui(TemplateView):
+	def __init__(self,valor):
+		self.valor = valor
+	def mostrarAdmiMaquiIngreMaqui(self,request):
+		form= MaquinariaForm(request.POST or None)
+		if request.method=='POST':
+			if form.is_valid():
+				duplicidad = PuestoTrabajo.objects.filter(puestoTrabajo=request.POST["puestoTrabajo"])
+				if len(duplicidad)==0:
+					form.save()
+					messages.success(request,'Se ha ingresado correctamente la maquinaria.')
+					return HttpResponseRedirect("/admimaqui")
+				else:
+					messages.error(request, "Ya existe una maquinaria registrada con ese nombre.")
+			else:
 				messages.error(request,'Debe llenar todos los campos disponibles.')
 		ctx= {'MaquinariaForm':form}
 		return render(request, 'Portaflash/admimaquiingremaqui.html',ctx)
-
 
 
 ####Ingresar Operador
@@ -106,12 +132,67 @@ class AdmiTrabIngreTrab(TemplateView):
 				messages.success(request,'Se ha ingresado correctamente el trabajador.')
 				return HttpResponseRedirect("/admitrab")
 			else:
-				messages.error(request,'Debe llenar todos los campos disponibles.')
+				messages.error(request,'Debe llenar correctamente todos los campos disponibles.')
 		ctx= {'OperadorForm':form}
 		return render(request, 'Portaflash/admitrabingretrab.html',ctx)
 
 
 
+####Ingresar nuevo material
+class BodeNuevoMate(TemplateView):
+	def __init__(self,valor):
+		self.valor = valor
+	def mostrarBodeNuevoMate(self,request):
+		form= MaterialForm(request.POST or None)
+		if request.method=='POST':
+			if not form.is_valid():
+				form.save()
+				messages.success(request,'Se ha ingresado correctamente el material.')
+				return HttpResponseRedirect("Portaflash/homeBode")
+			else:
+				messages.error(request,'Debe llenar correctamente todos los campos disponibles.')
+		ctx= {'MaterialForm':form}
+		return render(request, 'Portaflash/bodenuevomate.html',ctx)
+
+
+#######3Modificar Estado Maquina
+class AdmiMaquiModiEstado(TemplateView):
+	def __init__(self,valor):
+		self.valor = valor
+	def mostrarAdmiMaquiModiEstado(self,request):
+		maquis = PuestoTrabajo.objects.all().order_by('puestoTrabajo')
+		form = MaquinariaForm(request.POST or None)
+		if request.method=='POST':
+			if form.is_valid():
+				maqui = PuestoTrabajo.objects.filter(puestoTrabajo=request.POST["puestoTrabajo"])[0]
+				maqui.estadoMaquinaria = request.POST["estadoMaquinaria"]
+				maqui.save()
+				messages.success(request,'Se ha modificado correctamente el estado de la maquinaria.')
+				return HttpResponseRedirect("/admimaqui")
+			else:
+				messages.error(request,'Valor incorrecto para el estado de la maquinaria')
+		ctx = {'maquinarias':maquis,'MaquinariaForm':form}
+		return render(request, 'Portaflash/admimaquimodiestado.html',ctx)
+
+@csrf_exempt
+def AdmiMaquiModiEstado_getForm(request):
+	maqui = PuestoTrabajo.objects.get(pk=request.POST["id"])
+	form = MaquinariaForm(instance=maqui)
+	ctx={
+		'MaquinariaForm':form,
+	}
+	return render(request, 'Portaflash/admimaquimodiestado_getForm.html',ctx)
+
+
+###Ver Estado
+class AdmiMaquiVerEstado(TemplateView):
+	def __init__(self,valor):
+		self.valor = valor
+	def mostrarAdmiMaquiVerEstado(self,request):
+		maquinarias = PuestoTrabajo.objects.all().order_by("puestoTrabajo")
+		ctx = {"maquinarias":maquinarias}
+		return render(request, 'Portaflash/admimaquiverestado.html',ctx)
+		
 
 class Login(TemplateView):
 	def __init__(self,valor):

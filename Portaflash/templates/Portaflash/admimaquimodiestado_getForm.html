@@ -1,0 +1,24 @@
+
+  <form class="form-horizontal" role="form" method="POST" action="{% url 'vista_ingresar_maquinaria' %}">
+  {% csrf_token %}
+
+   <div style="width:0px;overflow:hidden;">
+    <label for="nombre" class="col-sm-4 control-label">Maquinaria</label>
+    <div class="col-sm-8">
+      {{MaquinariaForm.puestoTrabajo}}   
+    </div>
+  </div>
+
+  <div class="form-group" style="margin-top:-30px;">
+    <label for="nombre" class="col-sm-4 control-label" id="EstadoMaquinaria">Estado Maquinaria</label>
+  
+
+    <div class="col-sm-8">
+      {{MaquinariaForm.estadoMaquinaria}}
+    </div>
+    
+  </div>
+  <div class="col-sm-offset-3 col-sm-9">
+    <button id="btn4" class="btn btn-danger btn-lg btnMenu" type='submit'>Modificar</button>
+  </div>
+</form>

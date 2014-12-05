@@ -18,12 +18,11 @@
 
 {%block contenido%}
 	<ul class="nav nav-pills" id="tab1">
-  		<li role="presentation"> <a href="/admimaquiverestado">Ver Estado Maquinaria</a></li>
-  		<li role="presentation"><a href="/admimaquimodiestado">Modificar Estado Maquinaria</a></li>
-      <li role="presentation"><a href="/admimaquiingremaqui">Ingresar Maquinaria</a></li>
+  		<li role="presentation"> <a href="/bodenuevomate">Nuevo Material</a></li>
+  		
   	</ul>
 
-<h2 class="mih2">Ingresar Maquinaria</h2>
+<h2 class="mih2">Ingresar Material Nuevo</h2>
   
   <!--<button id="btn2" onclick="fn1('btn2');">boton2</button>-->
   <form class="form-horizontal" role="form" method="POST" action="{% url 'vista_ingresar_maquinaria' %}">
@@ -31,21 +30,34 @@
 
 
    <div class="form-group">
-    <label for="nombre" class="col-sm-4 control-label">Maquinaria</label>
+    <label for="nombre" class="col-sm-4 control-label">Nombre Material</label>
     
     <div class="col-sm-8">
-      {{MaquinariaForm.puestoTrabajo}}
+      {{MaterialForm.nombreMaterial}}
       
     </div>
   </div>
 
-<div class="form-group">
-  <label for="nombre" class="col-sm-4 control-label" id="EstadoMaquinaria">Estado Maquinaria</label>
-  
-
-  <div class="col-sm-8">
-    {{MaquinariaForm.estadoMaquinaria}}
+  <div class="form-group">
+    <label for="nombre" class="col-sm-4 control-label">Cantidad</label>
+    <div class="col-sm-8">
+      {{MaterialForm.cantidad}}
+      
+    </div>
   </div>
+
+  <div class="form-group">
+    <label for="nombre" class="col-sm-4 control-label" id="UnidadMedida">Unidad de Medida</label>
+    <div class="col-sm-8">
+      {{MaterialForm.unidadMedida}}
+  </div>
+
+  <div class="form-group">
+    <label for="nombre" class="col-sm-4 control-label" id="TipoMaterial">Tipo de Material</label>
+    <div class="col-sm-8">
+      {{MaterialForm.tipoMaterial}}
+  </div>
+
     
 </div>
     <div class="col-sm-offset-3 col-sm-9">

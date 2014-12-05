@@ -27,6 +27,7 @@ unidadMedida=(
 	('Metros','Metros'),
 	('Centimetros','Centimetros'),
 	('Milimetros','Milimetros'),
+	('Cajas','Cajas')
 	)
 
 Estado=(
@@ -56,7 +57,7 @@ EstadoMaquinaria=(
 	)
 
 #Tarea=()
-tipoMaterial=(
+TipoMaterial=(
 	('Insumo','Insumo'),
 	('Materia Prima','Materia Prima'),
 	('SemiElaborado','SemiElaborado'),
@@ -249,7 +250,7 @@ class Material(models.Model):
 	nombreMaterial= models.CharField('Nombre Material', max_length=20, null=False, blank=False)
 	cantidad= models.IntegerField('Cantidad', max_length=20, null=False, blank=False)
 	unidadMedida= models.CharField('Unidad de Medida', max_length=20, null=False, blank=False, choices=unidadMedida)
-	tipoMaterial= models.CharField('Tipo de Material', max_length=20, null=False, blank=False, choices=tipoMaterial)
+	tipoMaterial= models.CharField('Tipo de Material', max_length=20, null=False, blank=False, choices=TipoMaterial)
 
 	def __unicode__(self):
 		return u'%s' % (self.nombreMaterial)

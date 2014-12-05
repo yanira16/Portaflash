@@ -18,30 +18,29 @@
 
 {%block contenido%}
 	<ul class="nav nav-pills" id="tab1">
-  		<li role="presentation"> <a href="/admimaquiverestado">Ver Estado Maquinaria</a></li>
+  		<li role="presentation"><a href="/admimaquiverestado">Ver Estado Maquinaria</a></li>
   		<li role="presentation"><a href="/admimaquimodiestado">Modificar Estado Maquinaria</a></li>
       <li role="presentation"><a href="/admimaquiingremaqui">Ingresar Maquinaria</a></li>
   	</ul>
 
 <h2 class="mih2">Ver Estado Maquinaria</h2>
-  
-  <!--<button id="btn2" onclick="fn1('btn2');">boton2</button>-->
-  <form class="form-horizontal" role="form" method="POST">
-  {% csrf_token %}
+  <table class="table table-bordered" style="width:70%;margin-left:120px;">
+    <thead>
+      <tr>
+        <th>Nombre Maquinaria</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for maqui in maquinarias %}
+      <tr>
+        <td>{{maqui.puestoTrabajo}}</td>
+        <td>{{maqui.estadoMaquinaria}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 
-  <div class="form-group">
-    <label for="nombre" class="col-sm-4 control-label">Maquinaria</label>
-    <div class="col-sm-8">
-      <input type="nombre" class="form-control" id="inputnombre1" placeholder="Nombre" name='nombre'>
-    </div>
-  </div>
-
-
-    <div class="col-sm-offset-3 col-sm-9">
-      <button id="btn4" class="btn btn-danger btn-lg btnMenu" onclick="fn4('btn4');">Ver</button>
-  </div>
-  </div>
-</form>
 {%endblock%}
 {%block JS%}
   

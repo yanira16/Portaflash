@@ -32,29 +32,35 @@
   <div class="form-group">
     <label for="nombre" class="col-sm-4 control-label">Maquinaria</label>
     <div class="col-sm-8">
-      <input type="nombre" class="form-control" id="inputnombre1" placeholder="Nombre" name='nombre'>
+      <select class="form-control" id="select-maquinaria" style="width:50%">
+        <option value="">seleccione una maquinaria</option>
+        {% for maqui in maquinarias %}
+          <option value="{{maqui.id}}">{{maqui.puestoTrabajo}}</option>
+        {% endfor %}
+      </select>
     </div>
   </div>
 
-<div class="roles2">
-  <label for="nombre" class="col-sm-4 control-label" id="EstadoTrabajador" style="width:100%">Estado Maquinaria</label>
-
-  <select class="form-control">
-    <option value="asigne">Elija un Estado</option>
-    <option value="Administrador">Activa</option>
-    <option value="Vendedor">En mantención</option>
-    <option value="Jefe">En reparación</option>
-    <option value="Bodeguero">Desactivada</option>
-    </select>
-  <div class="col-sm-8">
-    </div>
+<div id="llenar-form" class="">
+  <!-- llenar form -->
 </div>
-    <div class="col-sm-offset-3 col-sm-9">
-      <button id="btn4" class="btn btn-danger btn-lg btnMenu" onclick="fn4('btn4');">Ver</button>
-  </div>
 
 </form>
 {%endblock%}
 {%block JS%}
+<script type="text/javascript">
+  $("#select-maquinaria").change(function(){
+    $.ajax({
+        data:  {"id":$(this).val()},
+        url:   "{% url 'vista_modificar_maqui_get_form' %}",
+        type:  'post',
+        success:  function (response) {
+            $("#llenar-form").html(response);
+        }
+    });
+
+  });
+
+</script>
   
 {%endblock%}

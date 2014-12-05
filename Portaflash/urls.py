@@ -22,6 +22,9 @@ urlpatterns = [
 	url(r'^admimaquiverestado$', AdmiMaquiVerEstado("a").mostrarAdmiMaquiVerEstado),
 	url(r'^admimaquimodiestado$', AdmiMaquiModiEstado("a").mostrarAdmiMaquiModiEstado, name='vista_modificar_estado_maquinaria'), ###BASE PARA IMODIFICAR
 	url(r'^admimaquiingremaqui$', AdmiMaquiIngreMaqui("a").mostrarAdmiMaquiIngreMaqui, name='vista_ingresar_maquinaria'), ###BASE PARA INGRESAR
+	url(r'^admimaquimodiestado_getForm$', AdmiMaquiModiEstado_getForm, name="vista_modificar_maqui_get_form"),
+	url(r'^HomeBode$', HomeBode("a").mostrarHomeBode),
+	url(r'^bodenuevomate$', BodeNuevoMate("a").mostrarBodeNuevoMate, name='vista_nuevo_material'), ###Ingresar Material nuevo
 
 	url(r'^logout/', logout_view, name= 'vista_logout'),
 
