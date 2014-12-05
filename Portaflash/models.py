@@ -132,7 +132,7 @@ class TipoProducto(models.Model):
 
 class GrosorMaterial(models.Model):
 	id= models.AutoField('id',primary_key=True)
-	grosor= models.IntegerField('Grosor', max_length=5, null=False, blank=False)
+	grosor= models.IntegerField('Grosor', null=False, blank=False)
 	unidadMedida= models.CharField('Unidad de Medida', max_length=20, null=False, blank=False, choices=unidadMedida)
 
 	def __unicode__(self):
@@ -142,7 +142,7 @@ class GrosorMaterial(models.Model):
 class Dimension(models.Model):
 	id= models.AutoField('id',primary_key=True)
 	nombreDimension= models.CharField('Nombre Dimension', max_length=20, null=False, blank=False)
-	medida= models.IntegerField('Medida', max_length=6, null=False, blank=False)
+	medida= models.IntegerField('Medida', null=False, blank=False)
 	unidadMedida= models.CharField('Unida de Medida', max_length=20, null=False, blank=False, choices=unidadMedida)
 
 	def __unicode__(self):
@@ -151,7 +151,7 @@ class Dimension(models.Model):
 
 class Kilogramos(models.Model):
 	id= models.AutoField('id',primary_key=True)
-	kilos= models.IntegerField('Kilos', max_length=10, null=False, blank=False)
+	kilos= models.IntegerField('Kilos', null=False, blank=False)
 
 	#LLaves Foraneas
 	tipoProducto = models.ForeignKey(TipoProducto,verbose_name="Tipo Producto")
@@ -162,7 +162,7 @@ class Kilogramos(models.Model):
 
 class Producto(models.Model):
 	id= models.AutoField('id',primary_key=True)
-	cantidad= models.IntegerField('Cantidad', max_length=4, null=False, blank=False)
+	cantidad= models.IntegerField('Cantidad', null=False, blank=False)
 	descripcion= models.CharField('Descripcion', max_length=128, null=False, blank=False)
 
 	#LLaves Foraneas
@@ -188,7 +188,7 @@ class TerminacionProducto(models.Model):
 class Dimensiones(models.Model):
 	id= models.AutoField('id',primary_key=True)
 	nombreDimension= models.CharField('Dimension', max_length=20, null=False, blank=False)
-	medida= models.IntegerField('Medida', max_length=6, null=False, blank=False)
+	medida= models.IntegerField('Medida', null=False, blank=False)
 	unidadMedida= models.CharField('Unidad de Medida', max_length=20, null=False, blank=False, choices=unidadMedida)
 
 	#LLaves Foraneas
@@ -248,7 +248,7 @@ class OrdenTrabajoInterna(models.Model):
 class Material(models.Model):
 	id= models.AutoField('id',primary_key=True)
 	nombreMaterial= models.CharField('Nombre Material', max_length=20, null=False, blank=False)
-	cantidad= models.IntegerField('Cantidad', max_length=20, null=False, blank=False)
+	cantidad= models.IntegerField('Cantidad', null=False, blank=False)
 	unidadMedida= models.CharField('Unidad de Medida', max_length=20, null=False, blank=False, choices=unidadMedida)
 	tipoMaterial= models.CharField('Tipo de Material', max_length=20, null=False, blank=False, choices=TipoMaterial)
 
@@ -258,7 +258,7 @@ class Material(models.Model):
 
 class OrdenTrabajoMaterial(models.Model):
 	id= models.AutoField('id',primary_key=True)
-	cantidad= models.IntegerField('Cantidad', max_length=20, null=False, blank=False)
+	cantidad= models.IntegerField('Cantidad', null=False, blank=False)
 	unidadMedida= models.CharField('Unidad de Medida', max_length=20, null=False, blank=False, choices=unidadMedida)
 	
 	#LLaves Foraneas

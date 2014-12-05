@@ -36,7 +36,7 @@ class OperadorForm(forms.ModelForm):
 				'estadoOperador': forms.Select(attrs={'class':'form-control','placeholder':'Estado','style':'width:50%'})
 			}
 
-####Ingresar material nuevo
+####Ingresar material nuevo 
 class MaterialForm(forms.ModelForm):
 	class Meta:
 		model= Material #Tabla a referenciar

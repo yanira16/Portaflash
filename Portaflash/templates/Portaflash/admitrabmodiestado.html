@@ -1,0 +1,65 @@
+{%extends "Portaflash/base.html"%}
+{%block importar%}
+  <link rel="stylesheet" type="text/css" href="/static/css/base.css">
+{%endblock%}
+{%block titulo%}
+  Portaflash
+{%endblock%}
+{%block head%}
+  <div class="row">
+    <div id"logoempresa" class="col-xs-1">
+      <img src="/static/img/logoempresa.png" class="logoempresa" alt=" " style="width:150px;height:150px; margin-left:15px">
+    </div>
+    <div class="col-xs-11">
+      <h1><u><b>SOCIEDAD EN GESTIÓN COMERCIAL LIMITADA</b></u></h1>
+    </div>
+  </div>
+{%endblock%}
+
+{%block contenido%}
+ <ul class="nav nav-pills" id="tab1">
+      <li role="presentation"> <a  href="/admitrabingretrab">Ingresar Trabajador</a></li>
+      <li role="presentation"><a href="/admitrabmoditrab">Modificar Estado Trabajador</a></li>
+  </ul>
+
+  <h2 class="mih2">Modificar Estado Trabajador</h2>
+    
+    <!--<button id="btn2" onclick="fn1('btn2');">boton2</button>-->
+    <form class="form-horizontal" role="form" method="POST">
+    {% csrf_token %}
+
+    <div class="form-group">
+      <label for="nombre" class="col-sm-4 control-label">Trabajador</label>
+      <div class="col-sm-8">
+        <select class="form-control" id="select-operador" style="width:50%"> #############################3
+          <option value="">seleccione un trabajador</option>
+          {% for trab in trabajadores %}
+            <option value="{{trab.id}}">{{trab.Operador}}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+
+  <div id="llenar-form" class="">
+    <!-- llenar form -->
+  </div>
+
+  </form>
+  {%endblock%}
+  {%block JS%}
+  <script type="text/javascript">
+    $("#select-operador").change(function(){
+      $.ajax({
+          data:  {"id":$(this).val()},
+          url:   "{% url 'vista_modificar_trab_get_form' %}",
+          type:  'post',
+          success:  function (response) {
+              $("#llenar-form").html(response);
+          }
+      });
+
+    });
+
+  </script>
+  
+{%endblock%}

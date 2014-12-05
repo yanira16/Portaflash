@@ -150,6 +150,35 @@ class AdmiTrabIngreTrab(TemplateView):
 
 
 
+#######Modificar Estado Trabajador
+class AdmiTrabModiEstado(TemplateView):
+	def __init__(self,valor):
+		self.valor = valor
+	def mostrarAdmiTrabModiEstado(self,request):
+		traba = Operador.objects.all().order_by('operador')
+		form = OperadorForm(request.POST or None)
+		if request.method=='POST':
+			if form.is_valid():
+				trab = Operador.objects.filter(operador=request.POST["operador"])[0]
+				trab.estadoOperador = request.POST["estadoOperador"]
+				trab.save()
+				messages.success(request,'Se ha modificado correctamente el estado del trabajador.')
+				return HttpResponseRedirect("/admitrab")
+			else:
+				messages.error(request,'Valor incorrecto para el estado del trabajador.')
+		ctx = {'trabjadores':traba,'OperadorForm':form}
+		return render(request, 'Portaflash/admitrabmodiestado.html',ctx)
+
+@csrf_exempt
+def AdmiTrabModiEstado_getForm(request):
+	trab = Operador.objects.get(pk=request.POST["id"])
+	form = OperadorForm(instance=trab)
+	ctx={
+		'OperadorForm':form,
+	}
+	return render(request, 'Portaflash/admitrabmodiestado_getForm.html',ctx)
+
+
 ####Ingresar nuevo material
 class BodeNuevoMate(TemplateView):
 	def __init__(self,valor):
@@ -157,10 +186,11 @@ class BodeNuevoMate(TemplateView):
 	def mostrarBodeNuevoMate(self,request):
 		form= MaterialForm(request.POST or None)
 		if request.method=='POST':
-			if not form.is_valid():
+			if form.is_valid():
 				form.save()
 				messages.success(request,'Se ha ingresado correctamente el material.')
-				return HttpResponseRedirect("Portaflash/homeBode")
+				return HttpResponseRedirect("/HomeBode")
+				
 			else:
 				messages.error(request,'Debe llenar correctamente todos los campos disponibles.')
 		ctx= {'MaterialForm':form}
