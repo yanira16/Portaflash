@@ -56,7 +56,12 @@ EstadoMaquinaria=(
 	)
 
 #Tarea=()
-#Material=()
+tipoMaterial=(
+	('Insumo','Insumo'),
+	('Materia Prima','Materia Prima'),
+	('SemiElaborado','SemiElaborado'),
+	('Terminado','Terminado'),
+	)
 
 
 
@@ -242,27 +247,12 @@ class OrdenTrabajoInterna(models.Model):
 class Material(models.Model):
 	id= models.AutoField('id',primary_key=True)
 	nombreMaterial= models.CharField('Nombre Material', max_length=20, null=False, blank=False)
+	cantidad= models.IntegerField('Cantidad', max_length=20, null=False, blank=False)
+	unidadMedida= models.CharField('Unidad de Medida', max_length=20, null=False, blank=False, choices=unidadMedida)
+	tipoMaterial= models.CharField('Tipo de Material', max_length=20, null=False, blank=False, choices=tipoMaterial)
 
 	def __unicode__(self):
 		return u'%s' % (self.nombreMaterial)
-
-class SemiElaborado(models.Model):
-	id= models.AutoField('id',primary_key=True)
-	cantidad= models.IntegerField('Cantidad', max_length=20, null=False, blank=False)
-	unidadMedida= models.CharField('Unidad de Medida', max_length=20, null=False, blank=False, choices=unidadMedida)
-
-
-class MateriaPrima(models.Model):
-	id= models.AutoField('id',primary_key=True)
-	cantidad= models.IntegerField('Cantidad', max_length=20, null=False, blank=False)
-	unidadMedida= models.CharField('Unidad de Medida', max_length=20, null=False, blank=False, choices=unidadMedida)
-
-class Composicion(models.Model):
-	id= models.AutoField('id',primary_key=True)
-
-	#Llaves Foraneas
-	semiElaborado = models.ForeignKey(SemiElaborado,verbose_name="SemiElaborado")
-	materiaPrima = models.ForeignKey(MateriaPrima,verbose_name="Materia Prima")
 
 
 class OrdenTrabajoMaterial(models.Model):
@@ -273,8 +263,7 @@ class OrdenTrabajoMaterial(models.Model):
 	#LLaves Foraneas
 	ordenTrabajo = models.ForeignKey(OrdenTrabajo,verbose_name="Orden de Trabajo")
 	ordenTrabajoInterna = models.ForeignKey(OrdenTrabajoInterna,verbose_name="Orden de Trabajo Interna")
-	semiElaborado = models.ForeignKey(SemiElaborado,verbose_name="SemiElaborado")
-	materiaPrima = models.ForeignKey(MateriaPrima,verbose_name="Materia Prima")
+	material = models.ForeignKey(Material,verbose_name="Material")
 
 class Auditoria(models.Model):
 	id= models.AutoField('id',primary_key=True)
