@@ -1,0 +1,121 @@
+{%extends "Portaflash/base.html"%}
+{%block importar%}
+  <link rel="stylesheet" type="text/css" href="/static/css/base.css">
+{%endblock%}
+{%block titulo%}
+  Portaflash - Ingresar orden de compra
+{%endblock%}
+{%block head%}
+  <div class="row">
+    <div id"logoempresa" class="col-xs-1">
+      <img src="/static/img/logoempresa.png" class="logoempresa" alt=" " style="width:150px;height:150px; margin-left:15px">
+    </div>
+    <div class="col-xs-11">
+      <h1><u><b>SOCIEDAD EN GESTIÓN COMERCIAL LIMITADA</b></u></h1>
+    </div>
+  </div>
+{%endblock%}
+
+{%block contenido%}
+ <ul class="nav nav-pills" id="tab1">
+      <li role="presentation">
+        <a href="/adminuevaorden">Ingresar Orden de Compra</a>
+      </li>
+      <li role="presentation">
+        <a href="#">Ver Ordenes de Compra</a>
+      </li>
+      <li role="presentation">
+        <a href="#">Modificar Ordenes de Compra</a>
+      </li>
+  </ul>
+<div class="row" style="">
+  <h2 class="mih2">Ingresar Orden de Compra</h2>
+    <form class="form-horizontal" role="form" method="POST">
+    {% csrf_token %}
+
+    <div class="form-group">
+      <table class="table" style="margin-left:30px;">
+        <tr>
+          <th>Nombre empresa cliente:</th>
+          <td><input style="width:220px;" class="form-control"></td>
+          <th>Vendedor:</th>
+          <td><input style="width:220px;" class="form-control"></td>
+        </tr>
+        <tr>
+          <th>Rut empresa cliente:</th>
+          <td><input style="width:220px;" class="form-control"></td>
+          <th>Fecha:</th>
+          <td><input type="date" style="width:220px;" class="form-control"></td>
+        </tr>
+        <tr>
+          <th>Producto:
+            <select multiple class="form-control" style="height:120px;width:150px;">
+              <option>Producto 1</option>
+              <option>Producto 2</option>
+              <option>Producto 3</option>
+            </select>
+          </th>
+          <th>Especificación:
+            <select multiple class="form-control" style="height:120px;width:150px;">
+              <option>Producto 1</option>
+              <option>Producto 2</option>
+              <option>Producto 3</option>
+            </select>
+          </th>
+          <th>Terminación:
+            <select multiple class="form-control" style="height:120px;width:150px;">
+              <option>Producto 1</option>
+              <option>Producto 2</option>
+              <option>Producto 3</option>
+            </select>
+          </th>
+          <th>Cantidad:
+            <input class="form-control" style="width:220px;" type="number">
+            <br>
+            <br>
+            <br>
+            <button style="float:right;margin-right:20px;" class="btn btn-primary">Agregar a OC</button>
+          </th>
+        </tr>
+      </table>
+      <br>
+      <table style="margin-left:40px;" class="table table-bordered">
+        <thead>
+          <th>Producto</th>
+          <th>Especificación</th>
+          <th>Terminación</th>
+          <th>Cantidad</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Producto 1</td>
+            <td>especificacion 2</td>
+            <td>Terminacion 1</td>
+            <td>5</td>
+          </tr>
+          <tr>
+            <td>Producto 1</td>
+            <td>especificacion 2</td>
+            <td>Terminacion 1</td>
+            <td>5</td>
+          </tr>
+          <tr>
+            <td>Producto 1</td>
+            <td>especificacion 2</td>
+            <td>Terminacion 1</td>
+            <td>5</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="col-sm-offset-3 col-sm-9">
+        <button id="btn4" class="btn btn-success btn-lg btnMenu" type='submit'>Ingresar</button>
+      </div>
+      
+
+    </div>
+
+  </form>
+  </div>
+  {%endblock%}
+  {%block JS%}
+  {%endblock%}

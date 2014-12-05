@@ -34,7 +34,7 @@
         <select class="form-control" id="select-operador" style="width:50%"> #############################3
           <option value="">seleccione un trabajador</option>
           {% for trab in trabajadores %}
-            <option value="{{trab.id}}">{{trab.Operador}}</option>
+            <option value="{{trab.rutOperador}}">[{{trab.rutOperador}}] {{trab.nombreOperador}} {{trab.apellidoOperador}}</option>
           {% endfor %}
         </select>
       </div>

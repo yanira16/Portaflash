@@ -69,6 +69,7 @@ class AdmiTrabModTrab(TemplateView):
 	def __init__(self,valor):
 		self.valor = valor
 	def mostrarAdmiTrabModTrab(self,request):
+
 		return render(request, 'Portaflash/admitrabmodtrab.html',{})
 
 class AdmiMaqui(TemplateView):
@@ -95,23 +96,8 @@ def oc_view(request):
 	ctx ={'oc':ordenes}
 	return render_to_response('Portaflash/oc.html',ctx,context_instance=RequestContext(request))
 
+
 ####BASE PARA INGRESAR
-'''class AdmiMaquiIngreMaqui(TemplateView):
-	def __init__(self,valor):
-		self.valor = valor
-	def mostrarAdmiMaquiIngreMaqui(self,request):
-		form= MaquinariaForm(request.POST or None)
-		if request.method=='POST':
-			if form.is_valid():
-				form.save()
-				messages.success(request,'Se ha ingresado correctamente la maquinaria.')
-				return HttpResponseRedirect("/admimaqui")
-			else:
-				messages.error(request,'Debe llenar correctamente todos los campos disponibles.')
-		ctx= {'MaquinariaForm':form}
-		return render(request, 'Portaflash/admimaquiingremaqui.html',ctx)'''
-
-
 class AdmiMaquiIngreMaqui(TemplateView):
 	def __init__(self,valor):
 		self.valor = valor
@@ -155,28 +141,35 @@ class AdmiTrabModiEstado(TemplateView):
 	def __init__(self,valor):
 		self.valor = valor
 	def mostrarAdmiTrabModiEstado(self,request):
-		traba = Operador.objects.all().order_by('operador')
+		traba = Operador.objects.all().order_by('nombreOperador')
 		form = OperadorForm(request.POST or None)
 		if request.method=='POST':
-			if form.is_valid():
-				trab = Operador.objects.filter(operador=request.POST["operador"])[0]
+			if "rutOperador" in request.POST:
+				trab = Operador.objects.filter(pk=request.POST["rutOperador"])[0]
 				trab.estadoOperador = request.POST["estadoOperador"]
+				trab.mailOperador = request.POST["mailOperador"]
+				trab.nombreOperador = request.POST["nombreOperador"]
+				trab.apellidoOperador = request.POST["apellidoOperador"]
 				trab.save()
 				messages.success(request,'Se ha modificado correctamente el estado del trabajador.')
 				return HttpResponseRedirect("/admitrab")
 			else:
 				messages.error(request,'Valor incorrecto para el estado del trabajador.')
-		ctx = {'trabjadores':traba,'OperadorForm':form}
+		ctx = {'trabajadores':traba,'OperadorForm':form}
 		return render(request, 'Portaflash/admitrabmodiestado.html',ctx)
 
 @csrf_exempt
 def AdmiTrabModiEstado_getForm(request):
-	trab = Operador.objects.get(pk=request.POST["id"])
-	form = OperadorForm(instance=trab)
-	ctx={
-		'OperadorForm':form,
-	}
-	return render(request, 'Portaflash/admitrabmodiestado_getForm.html',ctx)
+	if "id" in request.POST and request.POST["id"]!="":
+		trab = Operador.objects.get(pk=request.POST["id"])
+		form = OperadorForm(instance=trab)
+		ctx={
+			'OperadorForm':form,
+			'idOperador':request.POST["id"]
+		}
+		return render(request, 'Portaflash/admitrabmodiestado_getForm.html',ctx)
+	else:
+		return HttpResponse("")
 
 
 ####Ingresar nuevo material
@@ -267,5 +260,13 @@ def logout_view(request):
     """
     logout(request)
     return HttpResponseRedirect('/')
+
+
+class AdmiOrdenIngre(TemplateView):
+	def __init__(self,valor):
+		self.valor=valor
+	def mostrarAdmiOrdenIngre(self, request):
+		ctx = {}
+		return render_to_response("Portaflash/admiordeningre.html", ctx, context_instance=RequestContext(request))
 
 				
