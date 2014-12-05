@@ -55,14 +55,13 @@ EstadoMaquinaria=(
 	('Desactivada','Desactivada'),
 	)
 
-#PuestoTrabajo=()
 #Tarea=()
 #Material=()
 
 
 
 class Usuario(models.Model):
-	rutUsuario= models.IntegerField('Rut Usuario', primary_key=True)
+	rutUsuario= models.CharField('Rut Usuario', primary_key=True, max_length=12)
 	nombreUsuario= models.CharField('Nombre Usuario', max_length=128, null=False, blank=False)
 	apellidoUsuario= models.CharField('Apellido Usuario', max_length=128, null=False, blank=False)
 	
@@ -93,7 +92,7 @@ class Estado(models.Model):
 class OrdenDeCompra(models.Model):
 	numeroOC= models.IntegerField('Numero de Orden de Compra', primary_key=True)
 	nombreEmpresa= models.CharField('Nombre Empresa', max_length=128, null=False, blank=False)
-	rutEmpresa= models.CharField('Rut Empresa', max_length=10, null=False, blank=False)
+	rutEmpresa= models.CharField('Rut Empresa', max_length=12, null=False, blank=False)
 	rutVendedor= models.CharField('Rut Vendedor', max_length=10, null=False, blank=False) #Proximamaente llave foranea
 	fechaIngreso= models.DateField('Fecha Ingreso', null=False, blank=False)
 	fechaEntrega= models.DateField('Fecha Entrega', null=False, blank=False)
@@ -217,7 +216,7 @@ class Tarea(models.Model):
 
 
 class Operador(models.Model):
-	rutOperador= models.IntegerField('Rut', primary_key=True)
+	rutOperador= models.CharField('Rut', primary_key=True, max_length=12)
 	nombreOperador= models.CharField('Nombre', max_length=20, null=False, blank=False)
 	apellidoOperador= models.CharField('Apellido', max_length=20, null=False, blank=False)
 	mailOperador= models.CharField('Mail', max_length=30, null=False, blank=False)

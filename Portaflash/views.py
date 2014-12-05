@@ -86,6 +86,7 @@ class AdmiMaquiIngreMaqui(TemplateView):
 			if form.is_valid():
 				form.save()
 				messages.success(request,'Se ha ingresado correctamente la maquinaria.')
+				return HttpResponseRedirect("/admimaqui")
 			else:
 				messages.error(request,'Debe llenar todos los campos disponibles.')
 		ctx= {'MaquinariaForm':form}
@@ -103,6 +104,7 @@ class AdmiTrabIngreTrab(TemplateView):
 			if form.is_valid():
 				form.save()
 				messages.success(request,'Se ha ingresado correctamente el trabajador.')
+				return HttpResponseRedirect("/admitrab")
 			else:
 				messages.error(request,'Debe llenar todos los campos disponibles.')
 		ctx= {'OperadorForm':form}
