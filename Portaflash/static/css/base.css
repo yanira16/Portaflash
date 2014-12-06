@@ -116,3 +116,29 @@ h1 {
 	margin-top: 50px;
 	margin-left: 200px;
 }
+
+
+
+/* COSAS AGREGADAS*/
+.subtitulo{
+	text-align: center;	
+	font-family: Arial;
+	font-size: 30px;
+	padding-top: 30px;
+	font-style: italic;
+	color: black;
+}
+
+.tabla1{
+	background-clip: white;
+	max-width: 70%;
+	color: black;
+	margin-left: 50px;
+	margin-top: 150px;
+}
+
+#inputvendedor{
+	max-width: 50%;
+	color: black;
+}
+}

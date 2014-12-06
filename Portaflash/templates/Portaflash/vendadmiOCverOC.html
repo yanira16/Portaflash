@@ -1,0 +1,72 @@
+{%extends "Portaflash/base.html"%}
+{%block importar%}
+  <link rel="stylesheet" type="text/css" href="/static/css/base.css">
+{%endblock%}
+{%block titulo%}
+  Portaflash
+{%endblock%}
+{%block head%}
+  <div class="row">
+    <div id"logoempresa" class="col-xs-1">
+      <img src="/static/img/logoempresa.png" class="logoempresa" alt=" " style="width:150px;height:150px; margin-left:15px">
+    </div>
+    <div class="col-xs-11">
+      <h1><u><b>SOCIEDAD EN GESTIÓN COMERCIAL LIMITADA</b></u></h1>
+    </div>
+  </div>
+{%endblock%}
+
+{%block contenido%}
+  <ul class="nav nav-pills" id="tab1">
+      <li role="presentation"> <a href="#">Ingresar Orden de Compra</a></li>
+      <li role="presentation"><a href="/vendadmiOCverOC">Ver Orden de Compra</a></li>
+      <li role="presentation"> <a href="/vendadmiOCmodificarOC">Modificar Orden de Compra</a></li>
+      <li role="presentation"> <a href="#">Eliminar Productos de Orden de Compra</a></li>
+    </ul>
+
+  <h2 class="mih2">Modificar Orden de Compra</h2>
+      <form class="form-horizontal" role="form" method="POST">
+  {% csrf_token %}
+
+<div class="roles2">
+  <label for="nombre" class="col-sm-4 control-label" id="EstadoTrabajador" style="width:100%">Número de Orden de Compra</label>
+
+  <select class="form-control">
+    <option value="asigne">Elija una Orden de Çompra</option>
+    <option value="Administrador">001</option>
+    <option value="Vendedor">101</option>
+    <option value="Jefe">200</option>
+    <option value="Bodeguero">300</option>
+    </select>
+  <div class="col-sm-8">
+    </div>
+
+    <div class="col-sm-offset-3 col-sm-9">
+      <button id="btn4" class="btn btn-danger btn-lg btnMenu" onclick="fn4('btn4');">Ver</button>
+  </div>
+  </div>
+
+  <div class="tabla1">  
+    <h4>Descripción de Orden de Compra</h4>              
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Producto</th>
+          <th>Especificaciones</th>
+          <th>Terminación</th>
+          <th>Cantidad</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</form>
+  
+{%endblock%}
+{%block JS%}
+  
+{%endblock%}

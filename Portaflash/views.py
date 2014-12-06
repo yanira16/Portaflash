@@ -269,4 +269,46 @@ class AdmiOrdenIngre(TemplateView):
 		ctx = {}
 		return render_to_response("Portaflash/admiordeningre.html", ctx, context_instance=RequestContext(request))
 
-				
+
+###COSAS AGREGADAS
+class vendgenerarOT(TemplateView):
+	def __init__(self,valor):
+		self.valor = valor
+	def mostrarvendgenerarOT(self,request):
+		return render(request, 'Portaflash/vendgenerarOT.html',{})
+
+class vendconsulOC(TemplateView):
+	def __init__(self,valor):
+		self.valor = valor
+	def mostrarvendconsulOC(self,request):
+		return render(request, 'Portaflash/vendconsulOC.html',{})
+
+class vendconsulOCverestadoOC(TemplateView):
+	def __init__(self,valor):
+		self.valor = valor
+	def mostrarvendconsulOCverestadoOC(self,request):
+		return render(request, 'Portaflash/vendconsulOCverestadoOC.html',{})
+
+class vendconsulOCverestadoavanceOC(TemplateView):
+	def __init__(self,valor):
+		self.valor = valor
+	def mostrarvendconsulOCverestadoavanceOC(self,request):
+		return render(request, 'Portaflash/vendconsulOCverestadoavanceOC.html',{})
+
+class vendadmiOC(TemplateView):
+	def __init__(self,valor):
+		self.valor = valor
+	def mostrarvendadmiOC(self,request):
+		return render(request, 'Portaflash/vendadmiOC.html',{})
+
+class vendadmiOCmodificarOC(TemplateView):
+	def __init__(self,valor):
+		self.valor = valor
+	def mostrarvendadmiOCmodificarOC(self,request):
+		return render(request, 'Portaflash/vendadmiOCmodificarOC.html',{})
+
+class vendadmiOCverOC(TemplateView):
+	def __init__(self,valor):
+		self.valor = valor
+	def mostrarvendadmiOCverOC(self,request):
+		return render(request, 'Portaflash/vendadmiOCverOC.html',{})

@@ -35,6 +35,17 @@ urlpatterns = [
 	
 	#Vendedor
 	url(r'^HomeVende$', HomeVende("a").mostrarHomeVende),
+	###COSAS AGREGADAS
+	url(r'^vendgenerarOT$', vendgenerarOT("a").mostrarvendgenerarOT),
+	url(r'^vendconsulOC$', vendconsulOC("a").mostrarvendconsulOC),
+	url(r'^vendconsulOCverestadoOC$', vendconsulOCverestadoOC("a").mostrarvendconsulOCverestadoOC),
+	url(r'^vendconsulOCverestadoavanceOC$', vendconsulOCverestadoavanceOC("a").mostrarvendconsulOCverestadoavanceOC),
+	url(r'^vendadmiOC$', vendadmiOC("a").mostrarvendadmiOC),
+	url(r'^vendadmiOCverOC$', vendadmiOCverOC("a").mostrarvendadmiOCverOC),
+	url(r'^vendadmiOCmodificarOC$', vendadmiOCmodificarOC("a").mostrarvendadmiOCmodificarOC),
+
+
+	
 
 	#Jefe de Taller
 	url(r'^HomeJefe$', HomeJefe("a").mostrarHomeJefe),
