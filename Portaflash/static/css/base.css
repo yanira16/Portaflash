@@ -1,5 +1,5 @@
 body {
-	background-color: gray;
+	background: linear-gradient(gray,white) ;
 	margin:0;
 	padding:0;
 	height: 100%;
@@ -11,7 +11,7 @@ body {
 }
 
 h1 {
-	background-color:red;
+	background-color: #F62323;
 	text-align: center;
 	width: 1300px;
 	height: 150px;
@@ -20,6 +20,7 @@ h1 {
 	margin-left: 45px;
 	font-family: Arial;
 	font-size: 300%;
+	color: #000;
 }
 
 #inputusuario, #inputcontrasena{
