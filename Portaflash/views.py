@@ -387,3 +387,42 @@ class boderecepcionproducto(TemplateView):
 		self.valor = valor
 	def mostrarboderecepcionproducto(self,request):
 		return render(request, 'Portaflash/boderecepcionproducto.html',{})
+
+#################################INTENTO AGREGAR USUARIOS
+def registro_view(request):
+
+	form_user = UserForm(request.POST or None) #Agregada
+	form_usuario = UsuarioForm(request.POST or None) #Agregada
+
+	if request.POST:
+		if form_user.is_valid() and form_usuario.is_valid():
+			
+			clave = form_user.cleaned_data['nombre'] #password y ClaveRepetida son los NAMES que tienen los inputs en el html
+			clave2 = form_user.cleaned_data['nombre']
+			if clave == clave2:
+				if form_user.cleaned_data['username'] == '' or form_user.cleaned_data['username'] == None or clave == '' or clave == None or form_user.cleaned_data['email'] == '': # verifica que todos los campos obligatorios esten llenados
+					messages.warning(request, "El nombre de usuario, clave y email no pueden ser nulos")
+					HttpResponseRedirect('/registro')
+				else:
+					usuarioo = User.objects.create_user(form_user.cleaned_data['username'],clave)
+					usuarioo.save() #aqui se ingreso el usuario a la tabla de Django (auth_user)
+			else:
+				messages.warning(request,"Las claves ingresadas no coinciden")
+				return HttpResponseRedirect('/registro')		
+		
+			if form_socio.is_valid() and form_user.is_valid():
+				usuario_inst = User.objects.get(username = form_user.cleaned_data['username']) #obtiene el user que ya se agrego, porke es necesario para crear el Usuario	
+				if form_socio.cleaned_data['nombre'] != "":
+					#en la linea siguiente se crea el socio, los campos user, nacionalidad, nombre, etc son los atributos de Socio en el models, los valores entre comillas son los names que debiesen ser los mismos nombres si es ke se esta usando un modelForm
+					usuario = Usuario(user=usuarioo_inst,rutUsuario=form_socio.cleaned_data['nacionalidad'],nombreUsuario=form_socio.cleaned_data['nombre'],apellidoUsuario=form_socio.cleaned_data['edad'])
+					usuario.save() #se crea el socio y se guarda
+					messages.success(request,"El registro se ha realizado exitosamente")
+					return HttpResponseRedirect('/')
+				else:
+					messages.warning(request,"El nombre de usuario no puede ser vacio")
+					return HttpResponseRedirect('/registro')	
+		messages.warning(request,"Error en los datos ingresados")
+		return HttpResponseRedirect('/registro')							
+	
+	ctx = {'form_user': form_user,'form_usuario':form_socio}
+	return render_to_response('Portaflash/admiordeningre.html', ctx, context_instance=RequestContext(request))

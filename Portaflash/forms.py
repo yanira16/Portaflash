@@ -60,4 +60,15 @@ class MaterialForm(forms.ModelForm):
 				'tipoMaterial': forms.Select(attrs={'class':'form-control','placeholder':'Tipo de Material','style':'width:50%'})
 			}
 
+#################################INTENTO AGREGAR USUARIOS
 
+class UserForm(forms.ModelForm):
+    ClaveRepetida = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control col-sm-4'}),required=True,label='Repita su clave')
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control col-sm-4'}),required=True,label='Clave')
+    class Meta:
+        model = User
+        fields = ('username', 'password',)
+        widgets = {
+            'username': forms.TextInput(attrs={'class':'form-control','placeholder': 'ej: 1234567-5'}),  
+            'password': forms.PasswordInput(attrs={'class':'form-control'}),
+        }
