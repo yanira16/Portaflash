@@ -193,3 +193,25 @@ h1 {
 #cantidad1{
 	max-width: 70%;
 }
+
+/*COSAS AGREGADAS 4*/
+
+#OC{
+	margin-left: -300px;
+}
+
+.roles3{
+	margin-left:100px;
+	max-width: 50%;
+	min-width: 100px;
+	margin-top: 50px;
+	color: black;
+
+}
+.mih3{
+	font-family: Arial;
+	font-size: 40px;
+	padding-top: 30px;
+	font-style: italic;
+	color: black;
+}

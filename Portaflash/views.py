@@ -447,3 +447,25 @@ class bodestock(TemplateView):
 		self.valor = valor
 	def mostrarbodestock(self,request):
 		return render(request, 'Portaflash/bodestock.html',{})
+
+###COSAS AGREGADAS 4
+
+class admiadmiOC(TemplateView):
+	def __init__(self,valor):
+		self.valor = valor
+	def mostraradmiadmiOC(self,request):
+		return render(request, 'Portaflash/admiadmiOC.html',{})
+
+class admiadmiOCverestadoOC(TemplateView):
+	def __init__(self,valor):
+		self.valor = valor
+	def mostraradmiadmiOCverestadoOC(self,request):
+		return render(request, 'Portaflash/admiadmiOCverestadoOC.html',{})
+
+class admiadmiOCmodestadoOC(TemplateView):
+	def __init__(self,valor):
+		self.valor = valor
+	def mostraradmiadmiOCmodestadoOC(self,request):
+		return render(request, 'Portaflash/admiadmiOCmodestadoOC.html',{})
+
+### HASTA AQUI

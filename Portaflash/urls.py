@@ -29,6 +29,12 @@ urlpatterns = [
 	url(r'^admimaquiingremaqui$', AdmiMaquiIngreMaqui("a").mostrarAdmiMaquiIngreMaqui, name='vista_ingresar_maquinaria'), ###BASE PARA INGRESAR
 	url(r'^admimaquimodiestado_getForm$', AdmiMaquiModiEstado_getForm, name="vista_modificar_maqui_get_form"), ##BASE MODIFICAR ESTADO
 	url(r'^adminuevaorden$', AdmiOrdenIngre("a").mostrarAdmiOrdenIngre,name="vista_ingresar_orden"),
+###COSAS AGREGADA 4
+	url(r'^admiadmiOC$', admiadmiOC("a").mostraradmiadmiOC),
+	url(r'^admiadmiOCverestadoOC$', admiadmiOCverestadoOC("a").mostraradmiadmiOCverestadoOC),
+	url(r'^admiadmiOCmodestadoOC$', admiadmiOCmodestadoOC("a").mostraradmiadmiOCmodestadoOC),
+### HASTA AQUI
+
 
 
 	#Bodeguero
