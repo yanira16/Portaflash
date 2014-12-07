@@ -426,3 +426,24 @@ def registro_view(request):
 	
 	ctx = {'form_user': form_user,'form_usuario':form_socio}
 	return render_to_response('Portaflash/admiordeningre.html', ctx, context_instance=RequestContext(request))
+
+
+	###COSAS AGREGADAS 3
+
+class bodeingremate(TemplateView):
+	def __init__(self,valor):
+		self.valor = valor
+	def mostrarbodeingremate(self,request):
+		return render(request, 'Portaflash/bodeingremate.html',{})
+
+class bodeentregamate(TemplateView):
+	def __init__(self,valor):
+		self.valor = valor
+	def mostrarbodeentregamate(self,request):
+		return render(request, 'Portaflash/bodeentregamate.html',{})
+
+class bodestock(TemplateView):
+	def __init__(self,valor):
+		self.valor = valor
+	def mostrarbodestock(self,request):
+		return render(request, 'Portaflash/bodestock.html',{})

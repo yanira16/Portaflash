@@ -187,3 +187,9 @@ h1 {
 	margin-top: 50px;
 	color: black;
 }
+
+/*COSAS AGREGADAS 3*/
+
+#cantidad1{
+	max-width: 70%;
+}

@@ -35,6 +35,14 @@ urlpatterns = [
 	url(r'^HomeBode$', HomeBode("a").mostrarHomeBode),
 	url(r'^bodenuevomate$', BodeNuevoMate("a").mostrarBodeNuevoMate, name='vista_nuevo_material'), ###Ingresar Material nuevo
 	url(r'^boderecepcionproducto$', boderecepcionproducto("a").mostrarboderecepcionproducto),
+	###COSAS AGREGADAS 3
+	url(r'^bodeingremate$', bodeingremate("a").mostrarbodeingremate),
+	url(r'^bodeentregamate$', bodeentregamate("a").mostrarbodeentregamate),
+	url(r'^bodestock$', bodestock("a").mostrarbodestock),
+
+
+
+	### Hasta aqui
 	
 	#Vendedor
 	url(r'^HomeVende$', HomeVende("a").mostrarHomeVende),

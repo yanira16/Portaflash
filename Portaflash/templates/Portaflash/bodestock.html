@@ -1,0 +1,66 @@
+{%extends "Portaflash/base.html"%}
+{%block importar%}
+  <link rel="stylesheet" type="text/css" href="/static/css/base.css">
+{%endblock%}
+{%block titulo%}
+  Portaflash
+{%endblock%}
+{%block head%}
+  <div class="row">
+    <div id"logoempresa" class="col-xs-1">
+      <img src="/static/img/logoempresa.png" class="logoempresa" alt=" " style="width:150px;height:150px; margin-left:15px">
+    </div>
+    <div class="col-xs-11">
+      <h1><u><b>SOCIEDAD EN GESTIÓN COMERCIAL LIMITADA</b></u></h1>
+    </div>
+  </div>
+{%endblock%}
+
+{%block contenido%}
+
+
+<h2 class="mih2">Ingresar Material Nuevo</h2>
+  
+  <!--<button id="btn2" onclick="fn1('btn2');">boton2</button>-->
+  <form class="form-horizontal" role="form" method="POST">
+  {% csrf_token %}
+
+<div class="listatrabajador">
+  <h5 class="col-sm-2"><b>Tipo Material</b></h5>  
+  <select multiple class="form-control">
+  <option>Materia Prima</option>
+  <option>Insumo</option>
+  <option>Semi-Elaborado</option>
+  <option>Terminado</option>
+</select>
+<div class="col-sm-10">
+</div>
+</div>
+<div class="listatrabajador">
+  <h5 class="col-sm-2"> <b>Nombre Material</b> </h5>              
+  <select multiple class="form-control">
+  <option>Planchas</option>
+  <option>Pernos</option>
+  <option>Rollos Soldadura</option>
+</select>
+<div class="col-sm-10">
+</div>
+</div>
+
+<div class="form-group">
+  <label for="usuario" class="col-sm-4 control-label" id="cantidad">Cantidad con Unidad de Medida</label>
+  <div class="col-sm-8">
+    <input type="usario" class="form-control" id="cantidad1" placeholder="Usuario" name='username'>
+  </div>
+</div>
+
+<div class="col-sm-offset-3 col-sm-9">
+  <button id="btn4" class="btn btn-danger btn-lg btnMenu" type='submit'>Ver</button>
+</div>
+
+
+</form>
+{%endblock%}
+{%block JS%}
+  
+{%endblock%}
