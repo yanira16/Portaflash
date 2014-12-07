@@ -17,14 +17,8 @@
 {%endblock%}
 
 {%block contenido%}
-  <ul class="nav nav-pills" id="tab1">
-      <li role="presentation"> <a href="#">Ingresar Orden de Compra</a></li>
-      <li role="presentation"><a href="/vendadmiOCverOC">Ver Orden de Compra</a></li>
-      <li role="presentation"> <a href="/vendadmiOCmodificarOC">Modificar Orden de Compra</a></li>
-      <li role="presentation"> <a href="#">Eliminar Productos de Orden de Compra</a></li>
-    </ul>
-
-  <h2 class="mih2">Ver Orden de Compra</h2>
+  
+  <h2 class="mih2">Recepcion Producto</h2>
       <form class="form-horizontal" role="form" method="POST">
   {% csrf_token %}
 
@@ -39,9 +33,9 @@
       <option value="Bodeguero">300</option>
       </select>
     <div class="col-sm-8">
-      </div>
+    </div>
 
-      <div class="col-sm-offset-3 col-sm-9">
+  <div class="col-sm-offset-3 col-sm-9">
         <button id="btn4" class="btn btn-danger btn-lg btnMenu" onclick="fn4('btn4');">Ver</button>
     </div>
   </div>
@@ -55,7 +49,7 @@
           <th>Producto</th>
           <th>Especificaciones</th>
           <th>Terminación</th>
-          <th>Cantidad</th>
+          <th>Cantidad Recepcionada</th>
         </tr>
       </thead>
       <tbody>
@@ -64,6 +58,11 @@
       </tbody>
     </table>
   </div>
+
+   <div class="col-sm-offset-3 col-sm-9">
+        <button id="btn4" class="btn btn-danger btn-lg btnMenu" onclick="fn4('btn4');">Recepcionar</button>
+        <button id="btn4" class="btn btn-danger btn-lg btnMenu" onclick="fn4('btn4');">Despachar</button> <!--Debería permitirlo solo si todos los productos de la OC están recepcionados-->
+    </div>
 </form>
   
 {%endblock%}

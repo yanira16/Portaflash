@@ -16,6 +16,8 @@ urlpatterns = [
 
 	#administrador
     url(r'^HomeAdmi$', HomeAdmi("a").mostrarHomeAdmi),
+    url(r'^admiusuario$', AdmiUsuario("a").mostrarAdmiUsuario),
+	url(r'^admiusuarioingreusuario$', AdmiUsuarioIngreUsuario("a").mostrarAdmiUsuarioIngreUsuario, name='vista_ingresar_usuario'), #Ingresar Usuario
 	url(r'^admitrab$', AdmiTrab("a").mostrarAdmiTrab),
 	url(r'^admitrabingretrab$', AdmiTrabIngreTrab("a").mostrarAdmiTrabIngreTrab, name='vista_ingresar_trabajador'), #Ingresar trabajador
 	url(r'^admitrabmodiestado_getForm$', AdmiTrabModiEstado_getForm, name="vista_modificar_trab_get_form"),#Modificar Trabajador
@@ -32,6 +34,7 @@ urlpatterns = [
 	#Bodeguero
 	url(r'^HomeBode$', HomeBode("a").mostrarHomeBode),
 	url(r'^bodenuevomate$', BodeNuevoMate("a").mostrarBodeNuevoMate, name='vista_nuevo_material'), ###Ingresar Material nuevo
+	url(r'^boderecepcionproducto$', boderecepcionproducto("a").mostrarboderecepcionproducto),
 	
 	#Vendedor
 	url(r'^HomeVende$', HomeVende("a").mostrarHomeVende),

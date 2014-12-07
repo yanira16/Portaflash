@@ -12,6 +12,18 @@ EstadoMaquinaria=(
 	)
 
 
+####Ingresar Usuario
+class UsuarioForm(forms.ModelForm):
+	class Meta:
+		model= Usuario #Tabla a referenciar
+		fields= ['rutUsuario','nombreUsuario','apellidoUsuario'] #atributos a ingresar
+		widgets={
+				'rutUsuario': forms.TextInput(attrs={'class':'form-control col-sm-4','placeholder':'Rut','style':'width:50%'}),
+				'nombreUsuario': forms.TextInput(attrs={'class':'form-control col-sm-4','placeholder':'Nombre','style':'width:50%'}),
+				'apellidoUsuario': forms.TextInput(attrs={'class':'form-control col-sm-4','placeholder':'Apellido','style':'width:50%'}),
+			}
+
+
 ###BASE PARA LOS INGRESAR
 class MaquinariaForm(forms.ModelForm):
 	class Meta:

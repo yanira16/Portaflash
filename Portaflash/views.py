@@ -53,6 +53,12 @@ class ModificarContrasena(TemplateView):
 	def mostrarModificarContrasena(self,request):
 		return render(request, 'Portaflash/modificarContrasena.html',{})
 
+class AdmiUsuario(TemplateView):
+	def __init__(self,valor):
+		self.valor = valor
+	def mostrarAdmiUsuario(self,request):
+		return render(request, 'Portaflash/admiusuario.html',{})
+
 class AdmiTrab(TemplateView):
 	def __init__(self,valor):
 		self.valor = valor
@@ -116,6 +122,23 @@ class AdmiMaquiIngreMaqui(TemplateView):
 				messages.error(request,'Debe llenar todos los campos disponibles.')
 		ctx= {'MaquinariaForm':form}
 		return render(request, 'Portaflash/admimaquiingremaqui.html',ctx)
+
+####Ingresar Usuario
+class AdmiUsuarioIngreUsuario(TemplateView):
+	def __init__(self,valor):
+		self.valor = valor
+	def mostrarAdmiUsuarioIngreUsuario(self,request):
+		form= UsuarioForm(request.POST or None)
+		if request.method=='POST':
+			if form.is_valid():
+				form.save()
+				messages.success(request,'Se ha ingresado correctamente el usuario.')
+				return HttpResponseRedirect("/admiusuario")
+			else:
+				messages.error(request,'Debe llenar correctamente todos los campos disponibles.')
+		ctx= {'UsuarioForm':form}
+		return render(request, 'Portaflash/admiusuarioingreusuario.html',ctx)
+
 
 
 ####Ingresar Operador
@@ -356,3 +379,11 @@ class jefetallerproductrabverproduc(TemplateView):
 		self.valor = valor
 	def mostrarjefetallerproductrabverproduc(self,request):
 		return render(request, 'Portaflash/jefetallerproductrabverproduc.html',{})
+
+
+#######Bodeguero
+class boderecepcionproducto(TemplateView):
+	def __init__(self,valor):
+		self.valor = valor
+	def mostrarboderecepcionproducto(self,request):
+		return render(request, 'Portaflash/boderecepcionproducto.html',{})
