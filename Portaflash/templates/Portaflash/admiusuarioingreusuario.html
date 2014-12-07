@@ -30,6 +30,20 @@
    <form class="form-horizontal" role="form" method="POST" action="{% url 'vista_ingresar_usuario' %}">
   {% csrf_token %}
 
+    <div class="form-group">
+      <label for="nombre" class="col-sm-4 control-label">Username</label>
+        <div class="col-sm-8">
+        {{UserForm.username}}     
+        </div>
+    </div>
+
+    <div class="form-group">
+      <label for="nombre" class="col-sm-4 control-label">Password</label>
+        <div class="col-sm-8">
+        {{UserForm.password}}     
+        </div>
+    </div>
+
 
    <div class="form-group">
     <label for="nombre" class="col-sm-4 control-label">Rut</label>

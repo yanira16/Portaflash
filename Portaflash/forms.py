@@ -67,8 +67,8 @@ class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control col-sm-4'}),required=True,label='Clave')
     class Meta:
         model = User
-        fields = ('username', 'password',)
+        fields = ['username', 'password']
         widgets = {
-            'username': forms.TextInput(attrs={'class':'form-control','placeholder': 'ej: 1234567-5'}),  
+            'username': forms.TextInput(attrs={'class':'form-control col-sm-4','placeholder': 'ej: 1234567-5','style':'width:50%'}),  
             'password': forms.PasswordInput(attrs={'class':'form-control'}),
         }

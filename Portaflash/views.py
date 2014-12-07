@@ -400,21 +400,21 @@ def registro_view(request):
 			clave = form_user.cleaned_data['nombre'] #password y ClaveRepetida son los NAMES que tienen los inputs en el html
 			clave2 = form_user.cleaned_data['nombre']
 			if clave == clave2:
-				if form_user.cleaned_data['username'] == '' or form_user.cleaned_data['username'] == None or clave == '' or clave == None or form_user.cleaned_data['email'] == '': # verifica que todos los campos obligatorios esten llenados
-					messages.warning(request, "El nombre de usuario, clave y email no pueden ser nulos")
-					HttpResponseRedirect('/registro')
+				if form_user.cleaned_data['username'] == '' or form_user.cleaned_data['username'] == None or clave == '' == '': # verifica que todos los campos obligatorios esten llenados
+					messages.warning(request, "El nombre de usuario y clave no pueden ser nulos")
+					HttpResponseRedirect("/admiusuario")
 				else:
 					usuarioo = User.objects.create_user(form_user.cleaned_data['username'],clave)
 					usuarioo.save() #aqui se ingreso el usuario a la tabla de Django (auth_user)
 			else:
 				messages.warning(request,"Las claves ingresadas no coinciden")
-				return HttpResponseRedirect('/registro')		
+				return HttpResponseRedirect("/admiusuario")		
 		
 			if form_socio.is_valid() and form_user.is_valid():
 				usuario_inst = User.objects.get(username = form_user.cleaned_data['username']) #obtiene el user que ya se agrego, porke es necesario para crear el Usuario	
-				if form_socio.cleaned_data['nombre'] != "":
+				if form_user.cleaned_data['nombre'] != "":
 					#en la linea siguiente se crea el socio, los campos user, nacionalidad, nombre, etc son los atributos de Socio en el models, los valores entre comillas son los names que debiesen ser los mismos nombres si es ke se esta usando un modelForm
-					usuario = Usuario(user=usuarioo_inst,rutUsuario=form_socio.cleaned_data['nacionalidad'],nombreUsuario=form_socio.cleaned_data['nombre'],apellidoUsuario=form_socio.cleaned_data['edad'])
+					usuario = Usuario(user=usuarioo_inst,username=form_user.cleaned_data['Username'],password=form_socio.cleaned_data['nombre'])
 					usuario.save() #se crea el socio y se guarda
 					messages.success(request,"El registro se ha realizado exitosamente")
 					return HttpResponseRedirect('/')
