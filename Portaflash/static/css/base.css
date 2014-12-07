@@ -141,4 +141,49 @@ h1 {
 	max-width: 50%;
 	color: black;
 }
+
+/*COSAS AGREGADAS 2*/
+
+.listatrabajador{
+	max-width: 70%;
+	margin-top: 50px;
+	margin-left: 50px;
+	color: black;
+
+}
+
+#tab2{
+	margin-left: 100px;
+}
+
+.tabla2{
+	background-clip: white;
+	max-width: 70%;
+	color: black;
+	margin-left: -100px;
+	margin-top: 100px;
+}
+
+#inputnuevacantidad{
+	max-width: 70%;
+	margin-left: 10px;
+}
+#nuevacantidad{
+	margin-left: -100px;
+}
+.tabla3{
+	max-width: 90%;
+	margin-left: 50px;
+	margin-top: 150px;
+	color: black;
+}
+#btn6{
+	margin-top: 20px;
+	margin-left: 50px;
+}
+.tabla4{
+	max-width: 70%;
+	margin-left: 10px;
+	margin-top: 50px;
+	color: black;
 }

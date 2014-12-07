@@ -49,5 +49,16 @@ urlpatterns = [
 
 	#Jefe de Taller
 	url(r'^HomeJefe$', HomeJefe("a").mostrarHomeJefe),
+	###COSAS AGREGADAS
+	url(r'^jefetallerasigtareas$', jefetallerasigtareas("a").mostrarjefetallerasigtareas),
+	url(r'^jefetallerOF$', jefetallerOF("a").mostrarjefetallerOF),
+	url(r'^jefetallerOFactualavanOF$', jefetallerOFactualavanOF("a").mostrarjefetallerOFactualavanOF),
+	url(r'^jefetallerOFverestadoavanOF$', jefetallerOFverestadoavanOF("a").mostrarjefetallerOFverestadoavanOF),
+	url(r'^jefetallerproductrab$', jefetallerproductrab("a").mostrarjefetallerproductrab),
+	url(r'^jefetallerproductrabactualproduc$', jefetallerproductrabactualproduc("a").mostrarjefetallerproductrabactualproduc),
+	url(r'^jefetallerproductrabverproduc$', jefetallerproductrabverproduc("a").mostrarjefetallerproductrabverproduc),
+
+
+
 	
 ]

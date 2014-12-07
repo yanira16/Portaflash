@@ -1,0 +1,77 @@
+{%extends "Portaflash/base.html"%}
+{%block importar%}
+  <link rel="stylesheet" type="text/css" href="/static/css/base.css">
+{%endblock%}
+{%block titulo%}
+  Portaflash
+{%endblock%}
+{%block head%}
+  <div class="row">
+    <div id"logoempresa" class="col-xs-1">
+      <img src="/static/img/logoempresa.png" class="logoempresa" alt=" " style="width:150px;height:150px; margin-left:15px">
+    </div>
+    <div class="col-xs-11">
+      <h1><u><b>SOCIEDAD EN GESTIÓN COMERCIAL LIMITADA</b></u></h1>
+    </div>
+  </div>
+{%endblock%}
+
+{%block contenido%}
+<ul class="nav nav-pills" id="tab2">
+      <li role="presentation"> <a href="/jefetallerproductrabactualproduc">Actualizar Productividad Trabajador</a></li>
+      <li role="presentation"><a href="/jefetallerproductrabverproduc">Ver Productividad Trabajador</a></li>
+    </ul>
+  <h2 class="subtitulo">Ver Productividad Trabajador</h2>
+<form class="form-horizontal" role="form" method="POST">
+  {% csrf_token %}
+<div class="listatrabajador">
+  <h5 class="col-sm-2"><b>Trabajador</b></h5>  
+  <select multiple class="form-control">
+  <option>trabajador1</option>
+  <option>trabajador2</option>
+  <option>trabajador3</option>
+  <option>trabajador4</option>
+  <option>trabajador5</option>
+</select>
+<div class="col-sm-10">
+</div>
+</div>
+
+<div class="col-sm-offset-3 col-sm-9">
+  <button id="btn5" class="btn btn-danger btn-lg btnMenu" onclick="fn5('btn5');">Ver</button>
+ </div>
+
+
+<div class="tabla3">
+  <h5 style="text-align:center"><b>Productividad del Trabajador</b></h5>           
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th> Tipo de Producto</th>
+        <th>Cantidad</th>
+        <th>Fecha</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+</form>
+
+  
+{%endblock%}
+{%block JS%}
+  
+{%endblock%}
+
+
+
+
+

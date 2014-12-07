@@ -1,0 +1,78 @@
+{%extends "Portaflash/base.html"%}
+{%block importar%}
+  <link rel="stylesheet" type="text/css" href="/static/css/base.css">
+{%endblock%}
+{%block titulo%}
+  Portaflash
+{%endblock%}
+{%block head%}
+  <div class="row">
+    <div id"logoempresa" class="col-xs-1">
+      <img src="/static/img/logoempresa.png" class="logoempresa" alt=" " style="width:150px;height:150px; margin-left:15px">
+    </div>
+    <div class="col-xs-11">
+      <h1><u><b>SOCIEDAD EN GESTIÓN COMERCIAL LIMITADA</b></u></h1>
+    </div>
+  </div>
+{%endblock%}
+
+{%block contenido%}
+<ul class="nav nav-pills" id="tab2">
+      <li role="presentation"> <a href="/jefetallerproductrabactualproduc">Actualizar Productividad Trabajador</a></li>
+      <li role="presentation"><a href="/jefetallerproductrabverproduc">Ver Productividad Trabajador</a></li>
+    </ul>
+  <h2 class="subtitulo">Actualizar Productividad Trabajador</h2>
+<form class="form-horizontal" role="form" method="POST">
+  {% csrf_token %}
+
+<div class="listatrabajador">
+  <h5 class="col-sm-2"><b>Trabajador</b></h5>  
+  <select multiple class="form-control">
+  <option>trabajador1</option>
+  <option>trabajador2</option>
+  <option>trabajador3</option>
+  <option>trabajador4</option>
+  <option>trabajador5</option>
+</select>
+<div class="col-sm-10">
+</div>
+</div>
+<div class="listatrabajador">
+  <h5 class="col-sm-2"> <b>Tipo Producto</b> </h5>              
+  <select multiple class="form-control">
+  <option>Tipo Producto1</option>
+  <option>Tipo Producto2</option>
+  <option>Tipo Producto3</option>
+  <option>Tipo Producto4</option>
+  <option>Tipo Producto5</option>
+</select>
+<div class="col-sm-10">
+</div>
+</div>
+<div class="form-group">
+  <label for="usuario" class="col-sm-2 control-label">Fecha</label>
+    <div class="col-sm-10">
+    <input type="usario" class="form-control" id="inputusuario" placeholder="Fecha" name='username'>
+    </div>
+</div>
+<div class="form-group">
+  <label for="usuario" class="col-sm-2 control-label">Cantidad</label>
+    <div class="col-sm-10">
+    <input type="usario" class="form-control" id="inputusuario" placeholder="Cantidad" name='username'>
+    </div>
+</div>
+    <div class="col-sm-offset-3 col-sm-9">
+      <button id="btn4" class="btn btn-danger btn-lg btnMenu" onclick="fn4('btn4');">Actualizar</button>
+  </div>
+  </div>
+</form>
+  
+{%endblock%}
+{%block JS%}
+  
+{%endblock%}
+
+
+
+
+

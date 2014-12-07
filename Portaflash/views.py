@@ -312,3 +312,47 @@ class vendadmiOCverOC(TemplateView):
 		self.valor = valor
 	def mostrarvendadmiOCverOC(self,request):
 		return render(request, 'Portaflash/vendadmiOCverOC.html',{})
+
+# COSAS AGREGADAS 2
+
+class jefetallerasigtareas(TemplateView):
+	def __init__(self,valor):
+		self.valor = valor
+	def mostrarjefetallerasigtareas(self,request):
+		return render(request, 'Portaflash/jefetallerasigtareas.html',{})
+
+class jefetallerOF(TemplateView):
+	def __init__(self,valor):
+		self.valor = valor
+	def mostrarjefetallerOF(self,request):
+		return render(request, 'Portaflash/jefetallerOF.html',{})
+
+class jefetallerOFactualavanOF(TemplateView):
+	def __init__(self,valor):
+		self.valor = valor
+	def mostrarjefetallerOFactualavanOF(self,request):
+		return render(request, 'Portaflash/jefetallerOFactualavanOF.html',{})
+
+class jefetallerOFverestadoavanOF(TemplateView):
+	def __init__(self,valor):
+		self.valor = valor
+	def mostrarjefetallerOFverestadoavanOF(self,request):
+		return render(request, 'Portaflash/jefetallerOFverestadoavanOF.html',{})
+
+class jefetallerproductrab(TemplateView):
+	def __init__(self,valor):
+		self.valor = valor
+	def mostrarjefetallerproductrab(self,request):
+		return render(request, 'Portaflash/jefetallerproductrab.html',{})
+
+class jefetallerproductrabactualproduc(TemplateView):
+	def __init__(self,valor):
+		self.valor = valor
+	def mostrarjefetallerproductrabactualproduc(self,request):
+		return render(request, 'Portaflash/jefetallerproductrabactualproduc.html',{})
+
+class jefetallerproductrabverproduc(TemplateView):
+	def __init__(self,valor):
+		self.valor = valor
+	def mostrarjefetallerproductrabverproduc(self,request):
+		return render(request, 'Portaflash/jefetallerproductrabverproduc.html',{})

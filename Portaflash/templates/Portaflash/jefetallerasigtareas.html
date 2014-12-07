@@ -1,0 +1,72 @@
+{%extends "Portaflash/base.html"%}
+{%block importar%}
+  <link rel="stylesheet" type="text/css" href="/static/css/base.css">
+{%endblock%}
+{%block titulo%}
+  Portaflash
+{%endblock%}
+{%block head%}
+  <div class="row">
+    <div id"logoempresa" class="col-xs-1">
+      <img src="/static/img/logoempresa.png" class="logoempresa" alt=" " style="width:150px;height:150px; margin-left:15px">
+    </div>
+    <div class="col-xs-11">
+      <h1><u><b>SOCIEDAD EN GESTIÓN COMERCIAL LIMITADA</b></u></h1>
+    </div>
+  </div>
+{%endblock%}
+
+{%block contenido%}
+
+  <h2 class="subtitulo">Asignar Tareas</h2>
+
+    <form class="form-horizontal" role="form" method="POST">
+  {% csrf_token %}
+
+<div class="listatrabajador">
+  <h5 class="col-sm-2"><b>Trabajador</b></h5>  
+	<select multiple class="form-control">
+  <option>trabajador1</option>
+  <option>trabajador2</option>
+  <option>trabajador3</option>
+  <option>trabajador4</option>
+  <option>trabajador5</option>
+</select>
+<div class="col-sm-10">
+</div>
+</div>
+<div class="listatrabajador">
+  <h5 class="col-sm-2"> <b>Maquinaria</b> </h5>              
+	<select multiple class="form-control">
+  <option>maquinaria1</option>
+  <option>maquinaria2</option>
+  <option>maquinaria3</option>
+  <option>maquinaria4</option>
+  <option>maquinaria5</option>
+</select>
+<div class="col-sm-10">
+</div>
+</div>
+
+<div class="form-group">
+  <label for="usuario" class="col-sm-2 control-label">Fecha</label>
+    <div class="col-sm-10">
+    <input type="usario" class="form-control" id="inputusuario" placeholder="Fecha" name='username'>
+    </div>
+</div>
+
+    <div class="col-sm-offset-3 col-sm-9">
+      <button id="btn4" class="btn btn-danger btn-lg btnMenu" onclick="fn4('btn4');">Asignar</button>
+  </div>
+  </div>
+</form>
+  
+{%endblock%}
+{%block JS%}
+  
+{%endblock%}
+
+
+
+
+
