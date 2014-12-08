@@ -16,11 +16,21 @@ EstadoMaquinaria=(
 class UsuarioForm(forms.ModelForm):
 	class Meta:
 		model= Usuario #Tabla a referenciar
+		exclude= ("user",)
 		fields= ['rutUsuario','nombreUsuario','apellidoUsuario'] #atributos a ingresar
 		widgets={
 				'rutUsuario': forms.TextInput(attrs={'class':'form-control col-sm-4','placeholder':'Rut','style':'width:50%'}),
 				'nombreUsuario': forms.TextInput(attrs={'class':'form-control col-sm-4','placeholder':'Nombre','style':'width:50%'}),
 				'apellidoUsuario': forms.TextInput(attrs={'class':'form-control col-sm-4','placeholder':'Apellido','style':'width:50%'}),
+			}
+
+class RolForm(forms.ModelForm):
+	class Meta:
+		model= Rol #Tabla a referenciar
+		fields= ['rol'] #atributos a ingresar
+		widgets={
+				'rol': forms.Select(attrs={'class':'form-control','placeholder':'Rol','style':'width:50%'}),
+				
 			}
 
 
@@ -63,12 +73,19 @@ class MaterialForm(forms.ModelForm):
 #################################INTENTO AGREGAR USUARIOS
 
 class UserForm(forms.ModelForm):
-    ClaveRepetida = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control col-sm-4'}),required=True,label='Repita su clave')
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control col-sm-4'}),required=True,label='Clave')
+    
     class Meta:
         model = User
         fields = ['username', 'password']
         widgets = {
-            'username': forms.TextInput(attrs={'class':'form-control col-sm-4','placeholder': 'ej: 1234567-5','style':'width:50%'}),  
-            'password': forms.PasswordInput(attrs={'class':'form-control'}),
+            'username': forms.TextInput(attrs={'class':'form-control col-sm-4','placeholder': 'Username','style':'width:50%'}),  
+            'password': forms.PasswordInput(attrs={'class':'form-control col-sm-4','placeholder': 'Password','style':'width:50%'}),
         }
+
+class TipoProductoForm(forms.ModelForm):
+	class Meta:
+		model= TipoProducto #Tabla a referenciar
+		fields= ['nombreTP',] #atributos a ingresar
+		widgets={
+				'nombreTP': forms.Select(attrs={'class':'form-control','placeholder':'Tipo de Producto','style':'width:50%'})
+			}

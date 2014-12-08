@@ -75,6 +75,7 @@ class Usuario(models.Model):
 	#Llaves Foraneas
 	user= models.OneToOneField(User) #Relacion uno a uno con la tabla usuario del sistema
 
+
 	def __unicode__(self):
 		return u'%s %s' % (self.nombreUsuario,self.apellidoUsuario)
 
@@ -99,7 +100,6 @@ class OrdenDeCompra(models.Model):
 	numeroOC= models.IntegerField('Numero de Orden de Compra', primary_key=True)
 	nombreEmpresa= models.CharField('Nombre Empresa', max_length=128, null=False, blank=False)
 	rutEmpresa= models.CharField('Rut Empresa', max_length=12, null=False, blank=False)
-	rutVendedor= models.CharField('Rut Vendedor', max_length=10, null=False, blank=False) #Proximamaente llave foranea
 	fechaIngreso= models.DateField('Fecha Ingreso', null=False, blank=False)
 	fechaEntrega= models.DateField('Fecha Entrega', null=False, blank=False)
 

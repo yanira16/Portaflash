@@ -42,7 +42,7 @@ urlpatterns = [
 	url(r'^bodenuevomate$', BodeNuevoMate("a").mostrarBodeNuevoMate, name='vista_nuevo_material'), ###Ingresar Material nuevo
 	url(r'^boderecepcionproducto$', boderecepcionproducto("a").mostrarboderecepcionproducto),
 	###COSAS AGREGADAS 3
-	url(r'^bodeingremate$', bodeingremate("a").mostrarbodeingremate),
+	#url(r'^bodeingremate$', bodeingremate("a").mostrarbodeingremate, name= 'mostrarbodeingremate'),
 	url(r'^bodeentregamate$', bodeentregamate("a").mostrarbodeentregamate),
 	url(r'^bodestock$', bodestock("a").mostrarbodestock),
 

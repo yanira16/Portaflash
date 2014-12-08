@@ -17,10 +17,7 @@
 {%endblock%}
 
 {%block contenido%}
-  <ul class="nav nav-pills" id="tab1">
-      <li role="presentation"> <a  href="/admiusuarioingreusuario">Ingresar Usuario</a></li>
-     <!-- <li role="presentation"><a href="/admitrabmodiestado">Modificar Estado Trabajador</a></li> -->
-  </ul>
+
 
   <h2 class="mih2">Ingresar Usuario</h2>
   
@@ -64,6 +61,15 @@
         <div class="col-sm-8">
       {{UsuarioForm.apellidoUsuario}}
     </div>
+  </div>
+
+  <div class="form-group">
+    <label for="nombre" class="col-sm-4 control-label">Rol</label>
+        <div class="col-sm-8">
+      {{RolForm.rol}}
+    </div>
+  </div>
+
 
   <div class="col-sm-offset-3 col-sm-9">
       <button id="btn4" class="btn btn-danger btn-lg btnMenu" type='submit'>Ingresar</button>

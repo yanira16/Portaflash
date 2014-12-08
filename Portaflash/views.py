@@ -127,16 +127,38 @@ class AdmiMaquiIngreMaqui(TemplateView):
 class AdmiUsuarioIngreUsuario(TemplateView):
 	def __init__(self,valor):
 		self.valor = valor
+
 	def mostrarAdmiUsuarioIngreUsuario(self,request):
-		form= UsuarioForm(request.POST or None)
+		form= UsuarioForm()
+		form2= UserForm()
+		form3= RolForm()
+		print 'hgggggggggggggggt'
 		if request.method=='POST':
-			if form.is_valid():
-				form.save()
-				messages.success(request,'Se ha ingresado correctamente el usuario.')
-				return HttpResponseRedirect("/admiusuario")
+			form= UsuarioForm(request.POST or None)
+			form2= UserForm(request.POST or None)
+			form3= RolForm(request.POST or None)
+			print 'haaaaaeeeaaa'
+			if form2.is_valid() and form.is_valid() and form3.is_valid():
+					print 'hgggggggggggggggt'
+					password = form2.cleaned_data['password']
+					username = form2.cleaned_data['username']
+					user = User()
+					user.username = username
+					user.set_password(password)
+					user.save()
+					usuario= form.save(commit=False)
+					roles=form3.save(commit=False)
+					print 'hgggggggggggggggt'
+					roles.usuario= usuario					
+					usuario.user= user
+					usuario.save()
+					user.save()
+					roles.save()
+					messages.success(request,'Se ha ingresado correctamente el usuario.')
+					return HttpResponseRedirect("/admiusuario")
 			else:
 				messages.error(request,'Debe llenar correctamente todos los campos disponibles.')
-		ctx= {'UsuarioForm':form}
+		ctx= { 'UsuarioForm':form,'UserForm':form2, 'RolForm':form3}
 		return render(request, 'Portaflash/admiusuarioingreusuario.html',ctx)
 
 
@@ -392,7 +414,7 @@ class boderecepcionproducto(TemplateView):
 def registro_view(request):
 
 	form_user = UserForm(request.POST or None) #Agregada
-	form_usuario = UsuarioForm(request.POST or None) #Agregada
+	#form_usuario = UsuarioForm(request.POST or None) #Agregada
 
 	if request.POST:
 		if form_user.is_valid() and form_usuario.is_valid():
@@ -430,11 +452,34 @@ def registro_view(request):
 
 	###COSAS AGREGADAS 3
 
-class bodeingremate(TemplateView):
+'''class bodeingremate(TemplateView):
 	def __init__(self,valor):
 		self.valor = valor
 	def mostrarbodeingremate(self,request):
+######################3
+
+
+		form= MaterialForm(request.POST or None)
+					if request.method=='POST':
+						if form.is_valid():
+							##################
+							materialTemp = 
+							aux = material.objects.get(tipo='materialTemp')
+							aux.cantidad = aux.cantidad + nuevocantidad
+							aux.save()
+							###################
+							form.save()
+							messages.success(request,'Se ha ingresado correctamente el material.')
+							return HttpResponseRedirect("/HomeBode")
+							
+						else:
+							messages.error(request,'Debe llenar correctamente todos los campos disponibles.')
+					ctx= {'MaterialForm':form}
+		########################################3
 		return render(request, 'Portaflash/bodeingremate.html',{})
+'''
+
+
 
 class bodeentregamate(TemplateView):
 	def __init__(self,valor):
