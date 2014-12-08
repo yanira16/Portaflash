@@ -354,6 +354,7 @@ class VendeOrdenIngre(TemplateView):
 	def __init__(self,valor):
 		self.valor=valor
 	def mostrarVendeOrdenIngre(self, request):
+		numeroOrden = OrdenDeCompra.objects.all().order_by("-numeroOC")[:1][0].numeroOC+1
 		productos   = TipoProducto.objects.all()
 		terminacion = Terminacion.objects.all()
 		vendedores  = Rol.objects.filter(rol="Vendedor")
@@ -387,7 +388,6 @@ class VendeOrdenIngre(TemplateView):
 				data = request.POST["descripcionOC"][:-1].split("&")
 				for det in data:
 					valores = det.split("~")
-					messages.info(request,valores[2])
 					tipoProd = TipoProducto.objects.filter(pk=int(valores[0]))[0]
 					term = Terminacion.objects.filter(pk=int(valores[2]))[0]
 					p = Producto(cantidad=valores[3],descripcion=valores[1],ordenDeCompra=oc, tipoProducto=tipoProd)
@@ -395,8 +395,8 @@ class VendeOrdenIngre(TemplateView):
 					tp = TerminacionProducto(terminacion=term, producto=p)
 					tp.save()
 				messages.success(request, "Orden de compra registrada con exito")
-				#return HttpResponseRedirect("/adminuevaorden")
-		ctx = {'vendedores':vendedores, 'terminacion':terminacion, 'productos':productos, 'data':data}
+				return HttpResponseRedirect("/vendadmiOC")
+		ctx = {'vendedores':vendedores, 'terminacion':terminacion, 'productos':productos, 'data':data, 'numeroOrden':numeroOrden}
 		return render_to_response("Portaflash/vendeordeningre.html", ctx, context_instance=RequestContext(request))
 
 class vendconsulOC(TemplateView):
