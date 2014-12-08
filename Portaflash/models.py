@@ -48,6 +48,7 @@ Terminacion=(
 	('Zincado','Zincado'),
 	('Galvanizado','Galvanizado'),
 	('Pintura','Pintura'),
+	('Duplex= Galv+Zinc','Duplex= Galv+Zinc'),
 	)
 EstadoMaquinaria=(
 	('Activa','Activa'),
@@ -56,12 +57,17 @@ EstadoMaquinaria=(
 	('Desactivada','Desactivada'),
 	)
 
-#Tarea=()
 TipoMaterial=(
 	('Insumo','Insumo'),
 	('Materia Prima','Materia Prima'),
 	('SemiElaborado','SemiElaborado'),
 	('Terminado','Terminado'),
+	)
+
+Tarea=(
+	('Preparacion Material','Preparacion Material'),
+	('Armado de Rectos','Armado de Rectos'),
+	('Armado de Curvas','Armado de Curvas'),
 	)
 
 
@@ -97,7 +103,8 @@ class Estado(models.Model):
 		return u'%s' % (self.nombreEstado)
 
 class OrdenDeCompra(models.Model):
-	numeroOC= models.IntegerField('Numero de Orden de Compra', primary_key=True)
+	id= models.AutoField('id',primary_key=True)
+	numeroOC= models.IntegerField('Numero de Orden de Compra', null=False, blank=False)
 	nombreEmpresa= models.CharField('Nombre Empresa', max_length=128, null=False, blank=False)
 	rutEmpresa= models.CharField('Rut Empresa', max_length=12, null=False, blank=False)
 	fechaIngreso= models.DateField('Fecha Ingreso', null=False, blank=False)
@@ -170,11 +177,11 @@ class Producto(models.Model):
 	ordenDeCompra= models.ForeignKey(OrdenDeCompra,verbose_name="Orden de Compra")
 
 	def __unicode__(self):
-		return u'%s' % (self.tipoProducto)
+		return u'%s' % (self.descripcion)
 
 class Terminacion(models.Model):
 	id= models.AutoField('id',primary_key=True)
-	nombreTerminacion= models.CharField('Terminacion', max_length=30, null=False, blank=False)
+	nombreTerminacion= models.CharField('Terminacion', max_length=30, null=False, blank=False, choices=Terminacion)
 
 
 class TerminacionProducto(models.Model):
@@ -212,7 +219,7 @@ class PuestoTrabajo(models.Model): #Maquinaria
 
 class Tarea(models.Model):
 	id= models.AutoField('id',primary_key=True)
-	tarea= models.CharField('Tarea', max_length=20, null=False, blank=False)
+	tarea= models.CharField('Tarea', max_length=20, null=False, blank=False, choices=Tarea)
 
 	#LLaves Foraneas
 	puestoTrabajo = models.ForeignKey(PuestoTrabajo,verbose_name="Puesto de Trabajo")
@@ -241,9 +248,6 @@ class DetalleOT(models.Model):
 	ordenTrabajo = models.ForeignKey(OrdenTrabajo,verbose_name="Orden de Trabajo")
 
 
-class OrdenTrabajoInterna(models.Model):
-	id= models.AutoField('id',primary_key=True)
-
 
 class Material(models.Model):
 	id= models.AutoField('id',primary_key=True)
@@ -263,7 +267,6 @@ class OrdenTrabajoMaterial(models.Model):
 	
 	#LLaves Foraneas
 	ordenTrabajo = models.ForeignKey(OrdenTrabajo,verbose_name="Orden de Trabajo")
-	ordenTrabajoInterna = models.ForeignKey(OrdenTrabajoInterna,verbose_name="Orden de Trabajo Interna")
 	material = models.ForeignKey(Material,verbose_name="Material")
 
 class Auditoria(models.Model):

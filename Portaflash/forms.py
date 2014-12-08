@@ -89,3 +89,12 @@ class TipoProductoForm(forms.ModelForm):
 		widgets={
 				'nombreTP': forms.Select(attrs={'class':'form-control','placeholder':'Tipo de Producto','style':'width:50%'})
 			}
+
+class OrdenCompraForm(forms.ModelForm):
+	class Meta:
+		model= OrdenDeCompra #Tabla a referenciar
+		fields= ['numeroOC'] #atributos a ingresar
+		widgets={
+				'numeroOC': forms.Select(attrs={'class':'form-control','placeholder':'Numero OC','style':'width:50%'}),
+				
+			}

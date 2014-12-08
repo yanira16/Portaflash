@@ -132,14 +132,20 @@ class AdmiUsuarioIngreUsuario(TemplateView):
 		form= UsuarioForm()
 		form2= UserForm()
 		form3= RolForm()
-		print 'hgggggggggggggggt'
+		
+		roles = {} 
+		if "check-admi" in request.POST: 
+			roles["admin"] = True 
+		if "check-vende" in request.POST: 
+			roles["vende"] = True 
+		if "check-jefe" in request.POST: 
+			roles["jefe"] = True 
+		if "check-bode" in request.POST: 
+			roles["bode"] = True
+		form= UsuarioForm(request.POST or None)
+		form2= UserForm(request.POST or None)
 		if request.method=='POST':
-			form= UsuarioForm(request.POST or None)
-			form2= UserForm(request.POST or None)
-			form3= RolForm(request.POST or None)
-			print 'haaaaaeeeaaa'
-			if form2.is_valid() and form.is_valid() and form3.is_valid():
-					print 'hgggggggggggggggt'
+			if form2.is_valid() and form.is_valid():
 					password = form2.cleaned_data['password']
 					username = form2.cleaned_data['username']
 					user = User()
@@ -147,18 +153,26 @@ class AdmiUsuarioIngreUsuario(TemplateView):
 					user.set_password(password)
 					user.save()
 					usuario= form.save(commit=False)
-					roles=form3.save(commit=False)
-					print 'hgggggggggggggggt'
-					roles.usuario= usuario					
 					usuario.user= user
 					usuario.save()
-					user.save()
-					roles.save()
+					if "check-admi" in request.POST: 
+						r = Rol(rol="Administrador", usuario= usuario) 
+						r.save() 
+					if "check-vende" in request.POST: 
+						r = Rol(rol="Vendedor", usuario= usuario) 
+						r.save()
+					if "check-jefe" in request.POST: 
+						r = Rol(rol="Jefe de Taller", usuario= usuario) 
+						r.save() 
+					if "check-bode" in request.POST: 
+						r = Rol(rol="Bodeguero", usuario= usuario) 
+						r.save()
+											
 					messages.success(request,'Se ha ingresado correctamente el usuario.')
 					return HttpResponseRedirect("/admiusuario")
 			else:
 				messages.error(request,'Debe llenar correctamente todos los campos disponibles.')
-		ctx= { 'UsuarioForm':form,'UserForm':form2, 'RolForm':form3}
+		ctx= { 'UsuarioForm':form,'UserForm':form2, 'roles':roles}
 		return render(request, 'Portaflash/admiusuarioingreusuario.html',ctx)
 
 
@@ -289,9 +303,9 @@ class Login(TemplateView):
 			if user is not None:
 				if user.is_active:					
 					usuario= Usuario.objects.filter(user=user)
-					#roles = Rol.objects.filter(usuario=usuario).filter(rol=request.POST['rol'])
-					if len(usuario)==1:
-					#if len(usuario)==1 && len(roles)==1:
+					roles = Rol.objects.filter(usuario=usuario).filter(rol=request.POST['rol'])
+					#if len(usuario)==1:
+					if len(usuario)==1 and len(roles)>0:
 						request.session['ROL_USUARIO']= request.POST['rol']
 						login(request, user)
 						messages.success(request,'Bienvenido ' + usuario[0].nombreUsuario)
@@ -320,7 +334,21 @@ class vendgenerarOT(TemplateView):
 	def __init__(self,valor):
 		self.valor = valor
 	def mostrarvendgenerarOT(self,request):
-		return render(request, 'Portaflash/vendgenerarOT.html',{})
+		oc = OrdenDeCompra.objects.all()
+		if request.method=='POST':
+			orden= request.POST.get('generar')
+		
+			print 'id'
+
+			ordenDeCompra= OrdenDeCompra.objects.get(id=orden)
+			ordenDeTrabajo= OrdenTrabajo()
+			ordenDeTrabajo.ordenDeCompra= ordenDeCompra
+			user=User.objects.get(username=request.user.username)
+			ordenDeTrabajo.usuario= user.usuario
+			ordenDeTrabajo.save()
+
+		ctx = {'ordenes':oc}
+		return render(request, 'Portaflash/vendgenerarOT.html', ctx)
 
 class vendconsulOC(TemplateView):
 	def __init__(self,valor):

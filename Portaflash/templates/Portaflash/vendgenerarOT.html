@@ -17,28 +17,29 @@
 {%endblock%}
 
 {%block contenido%}
-  <h2 class="mih2">Generar Orden de Fabricación</h2>
+  <h2 class="mih2">Generar Orden de Trabajo</h2>
   
     <form class="form-horizontal" role="form" method="POST">
   {% csrf_token %}
 
-<div class="roles2">
-  <label for="nombre" class="col-sm-4 control-label" id="EstadoTrabajador" style="width:100%">Número de Orden de Compra</label>
 
-  <select class="form-control">
-    <option value="asigne">Elija una Orden de Çompra</option>
-    <option value="Administrador">001</option>
-    <option value="Vendedor">101</option>
-    <option value="Jefe">200</option>
-    <option value="Bodeguero">300</option>
-    </select>
-  <div class="col-sm-8">
-    </div>
+ <div class="form-group">
+      <label for="nombre" class="col-sm-4 control-label">Orden de Compra</label>
+      <div class="col-sm-8">
+        <select class="form-control" name='generar' style="width:50%">
+          {% for orden in ordenes %}
+          <option name='id' value="{{orden.id}}">{{orden.numeroOC}}</option>
+          {% endfor %}
+        </select>
+      </div>
 </div>
+
+
+ 
     <div class="col-sm-offset-3 col-sm-9">
-      <button id="btn4" class="btn btn-danger btn-lg btnMenu" onclick="fn4('btn4');">Generar</button>
+      <button id="btn4" class="btn btn-danger btn-lg btnMenu" type='submit'>Generar</button>
   </div>
-  </div>
+  
 </form>
   
 {%endblock%}

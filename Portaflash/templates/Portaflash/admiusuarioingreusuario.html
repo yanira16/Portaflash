@@ -63,12 +63,23 @@
     </div>
   </div>
 
-  <div class="form-group">
-    <label for="nombre" class="col-sm-4 control-label">Rol</label>
-        <div class="col-sm-8">
-      {{RolForm.rol}}
-    </div>
-  </div>
+<div class="form-group"> 
+<label for="nombre" class="col-sm-4 control-label">Roles de Usuario</label> 
+  <div class="col-sm-8"> 
+    <div class="checkbox"> 
+      <label> <input name="check-admi" {% if roles.admin %}checked{% endif %} type="checkbox"> Administrador </label> 
+    </div> 
+    <div class="checkbox"> 
+      <label> <input name="check-vende" {% if roles.vende %}checked{% endif %} type="checkbox"> Vendedor </label> 
+    </div> 
+    <div class="checkbox"> 
+      <label> <input name="check-jefe" {% if roles.jefe %}checked{% endif %} type="checkbox"> Jefe de Taller </label> 
+    </div> 
+    <div class="checkbox">
+     <label> <input name="check-bode" {% if roles.bode %}checked{% endif %} type="checkbox"> Bodeguero </label> 
+    </div> 
+  </div> 
+</div>
 
 
   <div class="col-sm-offset-3 col-sm-9">
