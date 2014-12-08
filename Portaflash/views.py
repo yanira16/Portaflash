@@ -492,7 +492,20 @@ class boderecepcionproducto(TemplateView):
 	def __init__(self,valor):
 		self.valor = valor
 	def mostrarboderecepcionproducto(self,request):
-		return render(request, 'Portaflash/boderecepcionproducto.html',{})
+		ordenes = OrdenDeCompra.objects.exclude(estado__nombreEstado="Despachada")
+		ctx = {'ordenes':ordenes}
+		return render(request, 'Portaflash/boderecepcionproducto.html',ctx)
+
+
+
+@csrf_exempt
+def boderecepcionproducto_getData(request):
+	orden = OrdenDeCompra.objects.get(pk=request.POST["id"])
+	ctx={
+		'oc':orden
+	}
+	return render(request, 'Portaflash/boderecepcionproducto_getData.html',ctx)
+
 
 #################################INTENTO AGREGAR USUARIOS
 def registro_view(request):

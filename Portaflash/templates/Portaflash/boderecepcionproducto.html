@@ -25,47 +25,41 @@
   <div class="roles2">
     <label for="nombre" class="col-sm-4 control-label" id="EstadoTrabajador" style="width:100%">Número de Orden de Compra</label>
 
-    <select class="form-control">
+    <select class="form-control" id="select-oc">
       <option value="asigne">Elija una Orden de Çompra</option>
-      <option value="Administrador">001</option>
-      <option value="Vendedor">101</option>
-      <option value="Jefe">200</option>
-      <option value="Bodeguero">300</option>
+      {% for oc in ordenes %}
+      <option value="{{oc.id}}">{{oc.numeroOC}}</option>
+      {% endfor %}
       </select>
     <div class="col-sm-8">
     </div>
 
   <div class="col-sm-offset-3 col-sm-9">
-        <button id="btn4" class="btn btn-danger btn-lg btnMenu" onclick="fn4('btn4');">Ver</button>
+        <button id="btn4" class="btn btn-success btn-lg btnMenu" onclick="buscar_orden();">Ver</button>
     </div>
   </div>
 
-  <div class="tabla1">  
-    <h4>Descripción de Orden de Compra</h4>              
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th>Item</th>
-          <th>Producto</th>
-          <th>Especificaciones</th>
-          <th>Terminación</th>
-          <th>Cantidad Recepcionada</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-        </tr>
-      </tbody>
-    </table>
+  <div id="llenar-form">
+    
   </div>
-
-   <div class="col-sm-offset-3 col-sm-9">
-        <button id="btn4" class="btn btn-danger btn-lg btnMenu" onclick="fn4('btn4');">Recepcionar</button>
-        <button id="btn4" class="btn btn-danger btn-lg btnMenu" onclick="fn4('btn4');">Despachar</button> <!--Debería permitirlo solo si todos los productos de la OC están recepcionados-->
-    </div>
 </form>
   
 {%endblock%}
 {%block JS%}
+<script type="text/javascript">
+  function buscar_orden(){
+    event.preventDefault();
+    $.ajax({
+        data:  {"id":$("#select-oc").val()},
+        url:   "{% url 'vista_get_datos_OC' %}",
+        type:  'post',
+        success:  function (response) {
+            $("#llenar-form").html(response);
+        }
+    });
+
+  }
+
+</script>
   
 {%endblock%}

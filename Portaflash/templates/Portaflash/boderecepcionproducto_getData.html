@@ -1,0 +1,51 @@
+<div class="tabla1">  
+  <h4>Descripción de Orden de Compra</h4>
+  <table class="table" style="width:50%;">
+    <tr>
+      <th>Numero de orden</th>
+      <td>{{oc.numeroOC}}</td>
+    </tr>
+    <tr>
+      <th>Nombre Empresa Cliente</th>
+      <td>{{oc.nombreEmpresa}}</td>
+    </tr>
+    <tr>
+      <th>Rut Empresa Cliente</th>
+      <td>{{oc.rutEmpresa}}</td>
+    </tr>
+    <tr>
+      <th>Vendedor</th>
+      <td>{{oc.usuario}}</td>
+    </tr>
+    <tr>
+      <th>Fecha Ingreso</th>
+      <td>{{oc.fechaIngreso}}</td>
+    </tr>
+    <tr>
+      <th>Fecha Entrega</th>
+      <td>{{oc.fechaEntrega}}</td>
+    </tr>
+  </table>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Producto</th>
+        <th>Especificaciones</th>
+        <th>Terminación</th>
+        <th>Cantidad Recepcionada</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="col-sm-offset-3 col-sm-9">
+    <button id="btn4" class="btn btn-danger btn-l_g btnMenu">Recepcionar</button>
+    <button id="btn4" class="btn btn-danger btn-l_g btnMenu">Despachar</button> <!--Debería permitirlo solo si todos los productos de la OC están recepcionados-->
+</div>
