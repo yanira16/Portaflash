@@ -14,6 +14,7 @@ def datos_globales(request):
 
 			dict = {
 				'NOMBRE_USUARIO':nombre,
+				'NOMBRE_COMPLETO':nombre+" "+usuario[0].apellidoUsuario,
 				'ROL_USUARIO':request.session['ROL_USUARIO']
 			}
 			return dict

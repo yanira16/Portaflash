@@ -60,7 +60,7 @@ urlpatterns = [
 	url(r'^vendadmiOC$', vendadmiOC("a").mostrarvendadmiOC),
 	url(r'^vendadmiOCverOC$', vendadmiOCverOC("a").mostrarvendadmiOCverOC),
 	url(r'^vendadmiOCmodificarOC$', vendadmiOCmodificarOC("a").mostrarvendadmiOCmodificarOC),
-
+	url(r'^vendeordeningre$', VendeOrdenIngre("a").mostrarVendeOrdenIngre,name="vista_ingresar_orden"),
 
 	
 

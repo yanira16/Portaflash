@@ -350,6 +350,55 @@ class vendgenerarOT(TemplateView):
 		ctx = {'ordenes':oc}
 		return render(request, 'Portaflash/vendgenerarOT.html', ctx)
 
+class VendeOrdenIngre(TemplateView):
+	def __init__(self,valor):
+		self.valor=valor
+	def mostrarVendeOrdenIngre(self, request):
+		productos   = TipoProducto.objects.all()
+		terminacion = Terminacion.objects.all()
+		vendedores  = Rol.objects.filter(rol="Vendedor")
+		data={}
+		if request.method == "POST":
+			data["nombreEmpresa"]=request.POST["nombreEmpresa"]
+			data["rutEmpresa"]=request.POST["rutEmpresa"]
+			data["fechaIngreso"]=request.POST["fechaIngreso"]
+			data["fechaEntrega"]=request.POST["fechaEntrega"]
+			flag = True
+			if request.POST["nombreEmpresa"]=="":
+				messages.warning(request, "Nombre de empresa vacio.")
+				flag = False
+			if request.POST["rutEmpresa"]=="":
+				messages.warning(request, "Rut de empresa vacio.")
+				flag = False
+			if request.POST["fechaIngreso"]=="":
+				messages.warning(request, "Ingrese fecha ingreso.")
+				flag = False
+			if request.POST["fechaEntrega"]=="":
+				messages.warning(request, "Ingrese fecha entrega.")
+				flag = False
+			if flag:
+				#guardar
+				vendedor = Usuario.objects.filter(user = request.user)[0]
+				estado = Estado.objects.get(nombreEstado="Pendiente")
+				oc = OrdenDeCompra(numeroOC=1, fechaIngreso=data["fechaIngreso"],fechaEntrega=data["fechaEntrega"] , nombreEmpresa=data["nombreEmpresa"], rutEmpresa= data["rutEmpresa"],usuario=vendedor,estado=estado, )
+				oc.save()
+				oc.numeroOC = oc.id+1020
+				oc.save()
+				data = request.POST["descripcionOC"][:-1].split("&")
+				for det in data:
+					valores = det.split("~")
+					messages.info(request,valores[2])
+					tipoProd = TipoProducto.objects.filter(pk=int(valores[0]))[0]
+					term = Terminacion.objects.filter(pk=int(valores[2]))[0]
+					p = Producto(cantidad=valores[3],descripcion=valores[1],ordenDeCompra=oc, tipoProducto=tipoProd)
+					p.save()
+					tp = TerminacionProducto(terminacion=term, producto=p)
+					tp.save()
+				messages.success(request, "Orden de compra registrada con exito")
+				#return HttpResponseRedirect("/adminuevaorden")
+		ctx = {'vendedores':vendedores, 'terminacion':terminacion, 'productos':productos, 'data':data}
+		return render_to_response("Portaflash/vendeordeningre.html", ctx, context_instance=RequestContext(request))
+
 class vendconsulOC(TemplateView):
 	def __init__(self,valor):
 		self.valor = valor
@@ -400,11 +449,18 @@ class jefetallerOF(TemplateView):
 	def mostrarjefetallerOF(self,request):
 		return render(request, 'Portaflash/jefetallerOF.html',{})
 
+
+
 class jefetallerOFactualavanOF(TemplateView):
 	def __init__(self,valor):
 		self.valor = valor
 	def mostrarjefetallerOFactualavanOF(self,request):
-		return render(request, 'Portaflash/jefetallerOFactualavanOF.html',{})
+		otes=OrdenTrabajo.objects.all()
+		return render(request, 'Portaflash/jefetallerOFactualavanOF.html',{'otes': otes})
+
+
+
+
 
 class jefetallerOFverestadoavanOF(TemplateView):
 	def __init__(self,valor):

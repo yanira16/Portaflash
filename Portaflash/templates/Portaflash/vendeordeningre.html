@@ -1,0 +1,109 @@
+{%extends "Portaflash/base.html"%}
+{%block importar%}
+  <link rel="stylesheet" type="text/css" href="/static/css/base.css">
+{%endblock%}
+{%block titulo%}
+  Portaflash - Ingresar orden de compra
+{%endblock%}
+{%block head%}
+  <div class="row">
+    <div id"logoempresa" class="col-xs-1">
+      <img src="/static/img/logoempresa.png" class="logoempresa" alt=" " style="width:150px;height:150px; margin-left:15px">
+    </div>
+    <div class="col-xs-11">
+      <h1><u><b>SOCIEDAD EN GESTIÓN COMERCIAL LIMITADA</b></u></h1>
+    </div>
+  </div>
+{%endblock%}
+
+{%block contenido%}
+
+<div class="row" style="">
+  <h2 class="mih2">Ingresar Orden de Compra</h2>
+    <form class="form-horizontal" role="form" method="POST">
+    {% csrf_token %}
+
+    <div class="form-group">
+      <table class="table" style="margin-left:30px;">
+        <tr>
+          <th>Nombre empresa cliente:</th>
+          <td><input name="nombreEmpresa" value="{{data.nombreEmpresa}}" placeholder="Nombre" style="width:220px;" class="form-control"></td>
+          <th>Vendedor:</th>
+          <td>
+            {{NOMBRE_COMPLETO}}
+          </td>
+        </tr>
+        <tr>
+          <th>Rut empresa cliente:</th>
+          <td><input name="rutEmpresa" value="{{data.rutEmpresa}}"  placeholder="Rut" style="width:220px;" class="form-control"></td>
+          <th>Fecha Ingreso:</th>
+          <td><input name="fechaIngreso" type="date" value="{{data.fechaIngreso}}" style="width:220px;" class="form-control"></td>
+        </tr>
+        <tr>
+          <th>Fecha entrega:</th>
+          <td><input name="fechaEntrega" type="date" value="{{data.fechaEntrega}}" style="width:220px;" class="form-control"></td>
+        </tr>
+        <tr>
+          <th>Producto:
+            <select multiple id="select-producto" class="form-control" style="height:120px;width:150px;">
+              {% for prod in productos %}
+                <option value="{{prod.id}}">{{prod}}</option>
+              {% endfor %}
+            </select>
+          </th>
+          <th>Descripción:
+            <textarea id="textarea-especificacion" placeholder="descripcion" class="form-control" style="height:120px;width:220px;resize:none;font-size:12px;font-weight:normal;"></textarea>
+          </th>
+          <th>Terminación:
+            <select multiple id="select-terminacion" class="form-control" style="height:120px;width:150px;">
+              {% for term in terminacion %}
+                <option value="{{term.id}}">{{term.nombreTerminacion}}</option>
+              {% endfor %}
+            </select>
+          </th>
+          <th>Cantidad:
+            <input class="form-control" id="input-cantidad" style="width:220px;font-size:12px;font-weight:normal;" min="0" value="0" type="number">
+            <br>
+            <br>
+            <br>
+            <button style="float:right;margin-right:20px;" id="agregar" class="btn btn-primary">Agregar a OC</button>
+          </th>
+        </tr>
+      </table>
+      <br>
+      <h5 style="margin-left:40px;">Descripción de Orden de Compra</h5>
+      <table style="margin-left:40px;" class="table table-bordered">
+        <thead>
+          <th>Producto</th>
+          <th>Descripción</th>
+          <th>Terminación</th>
+          <th>Cantidad</th>
+        </thead>
+        <tbody id="tbody-agregados">
+          
+        </tbody>
+      </table>
+      <div class="col-sm-offset-3 col-sm-9">
+        <input type="hidden" name="descripcionOC" id="descripcionOC">
+        <button id="btn4" class="btn btn-success btn-lg btnMenu" type='submit'>Ingresar</button>
+      </div>
+      
+
+    </div>
+
+  </form>
+  </div>
+  {%endblock%}
+  {%block JS%}
+  <script type="text/javascript">
+    $("#agregar").click(function( event ) {
+      event.preventDefault();
+      if($("select").val()!=undefined && $("#input-cantidad").val()!=""){
+        $("#tbody-agregados").append("<tr><td>"+$("#select-producto option:selected").html()+"</td><td>"+$("#textarea-especificacion").val()+"</td><td>"+$("#select-terminacion option:selected").html()+"</td><td>"+$("#input-cantidad").val()+"</td></tr>");
+        str = $("#select-producto").val()+"~"+$("#textarea-especificacion").val()+"~"+$("#select-terminacion").val()+"~"+$("#input-cantidad").val()+"&";
+        $("#descripcionOC").val($("#descripcionOC").val()+str);
+        $("option:selected").attr("selected",false);
+      }
+    });
+  </script>
+  {%endblock%}
